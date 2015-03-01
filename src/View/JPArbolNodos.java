@@ -16,7 +16,7 @@ import javax.swing.tree.TreeSelectionModel;
 import Controler.ControladorROOT;
 import Model.RendererArbol;
 
-public class JPBienvenida extends JPanel {
+public class JPArbolNodos extends JPanel {
 
 	private final String[] cl={"Crear Cliente","Consultar Cliente","Modificar Cliente","Borrar Cliente"};
 	private final String[] pr={"Crear Proveedor","Consultar Proveedor","Modificar Proveedor","Borrar Proveedor"};
@@ -25,7 +25,7 @@ public class JPBienvenida extends JPanel {
 	private JTree tree;
 	
 	
-	public JPBienvenida() {
+	public JPArbolNodos() {
 		this.setBackground(Color.GRAY);
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(250,250));

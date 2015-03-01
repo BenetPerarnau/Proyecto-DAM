@@ -24,10 +24,10 @@ import Controler.ControladorROOT;
 public class JPVertabla extends JPanel {
 	private JScrollPane scrollPane;
 	private JTable table;
-	private JPFormularioClientes form1;
-	private JPFormularioEmpleados form2;
-	private JPFormularioProveedores form3;
-	private JPFormularioProductos form4;
+	private JPFormularioClientes formClientes;
+	private JPFormularioEmpleados formEmpleados;
+	private JPFormularioProveedores formProveedores;
+	private JPFormularioProductos formProductos;
 	
 	public JPVertabla() {
 
@@ -48,21 +48,21 @@ public class JPVertabla extends JPanel {
 	        table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 	        
 	        //Add the scroll pane to this window.
-	        form1=new JPFormularioClientes();
-	        form2=new JPFormularioEmpleados();
-	        form3=new JPFormularioProveedores();
-	        form4=new JPFormularioProductos();
+	        formClientes=new JPFormularioClientes();
+	        formEmpleados=new JPFormularioEmpleados();
+	        formProveedores=new JPFormularioProveedores();
+	        formProductos=new JPFormularioProductos();
 	        
-	        form1.setVisible(false);
-	        form2.setVisible(false);
-	        form3.setVisible(false);
-	        form4.setVisible(false);
+	        formClientes.setVisible(false);
+	        formEmpleados.setVisible(false);
+	        formProveedores.setVisible(false);
+	        formProductos.setVisible(false);
 	        
 	        add(scrollPane); 
-	        add(form1);
-	        add(form2);
-	        add(form3);
-	        add(form4);
+	        add(formClientes);
+	        add(formEmpleados);
+	        add(formProveedores);
+	        add(formProductos);
 	        
 	}
 
@@ -81,32 +81,32 @@ public class JPVertabla extends JPanel {
 		this.table = table;
 	}
 	public JPFormularioClientes getFormC(){
-		if(form2!=null)this.form2.setVisible(false);
-		if(form3!=null)this.form3.setVisible(false);
-		if(form4!=null)this.form4.setVisible(false);
-		if(form1!=null)this.form1.setVisible(true);
-		return form1;
+		if(formEmpleados!=null)this.formEmpleados.setVisible(false);
+		if(formProveedores!=null)this.formProveedores.setVisible(false);
+		if(formProductos!=null)this.formProductos.setVisible(false);
+		if(formClientes!=null)this.formClientes.setVisible(true);
+		return formClientes;
 	}
 	public JPFormularioEmpleados getFormE(){
-		if(form1!=null)this.form1.setVisible(false);
-		if(form3!=null)this.form3.setVisible(false);
-		if(form4!=null)this.form4.setVisible(false);
-		if(form2!=null)this.form2.setVisible(true);
-		return form2;
+		if(formClientes!=null)this.formClientes.setVisible(false);
+		if(formProveedores!=null)this.formProveedores.setVisible(false);
+		if(formProductos!=null)this.formProductos.setVisible(false);
+		if(formEmpleados!=null)this.formEmpleados.setVisible(true);
+		return formEmpleados;
 	}
 	public JPFormularioProveedores getFormP(){
-		if(form1!=null)this.form1.setVisible(false);
-		if(form2!=null)this.form2.setVisible(false);
-		if(form4!=null)this.form4.setVisible(false);
-		if(form3!=null)this.form3.setVisible(true);
-		return form3;
+		if(formClientes!=null)this.formClientes.setVisible(false);
+		if(formEmpleados!=null)this.formEmpleados.setVisible(false);
+		if(formProductos!=null)this.formProductos.setVisible(false);
+		if(formProveedores!=null)this.formProveedores.setVisible(true);
+		return formProveedores;
 	}
 	public JPFormularioProductos getFormProductos(){
-		if(form1!=null)this.form1.setVisible(false);
-		if(form2!=null)this.form2.setVisible(false);
-		if(form3!=null)this.form3.setVisible(false);
-		if(form4!=null)this.form4.setVisible(true);
-		return form4;
+		if(formClientes!=null)this.formClientes.setVisible(false);
+		if(formEmpleados!=null)this.formEmpleados.setVisible(false);
+		if(formProveedores!=null)this.formProveedores.setVisible(false);
+		if(formProductos!=null)this.formProductos.setVisible(true);
+		return formProductos;
 	}
 	
 }

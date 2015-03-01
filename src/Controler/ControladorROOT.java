@@ -35,16 +35,20 @@ import DAO.ProductoDAO;
 import DAO.ProveedorDAO;
 import DTO.Cliente;
 import DTO.Empleado;
+import DTO.Producto;
 import DTO.Proveedor;
 import Exceptions.ExceptionCompras;
 import Exceptions.ExceptionDNI_CIF;
 import Exceptions.ExceptionNcuenta;
 import Exceptions.ExceptionNombre;
+import Exceptions.ExceptionPrecio;
 import Exceptions.ExceptionSalario;
+import Exceptions.ExceptionStock;
 import Model.ConectorBBDD;
 import Model.Lectura;
 import View.JPFormularioClientes;
 import View.JPFormularioEmpleados;
+import View.JPFormularioProductos;
 import View.JPFormularioProveedores;
 import View.JPPie;
 import View.JPVertabla;
@@ -108,35 +112,44 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			System.out.println("Entra");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-									//OPERACIONES PROVEEDORES
+//									OPERACIONES PROVEEDORES
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			
-		}else if(this.vista.getVerTabla().getFormP()!=null && num_form==3 ){
+		}else if(this.vista.getVerTabla().getFormP()!=null && num_form==3 ){		
+			System.out.println("OP proveedor");
+			//
 			//boton de borrar en la tabla proveedores
-			System.out.println("entra");
-			if(e.getSource()==this.vista.getVerTabla().getFormP().getBtn()){
-				System.out.println("boton eliminar");
-				if (JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar el registro de la bade de datos?", "WARNING",
-			        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-			    // yes option
-				String key=this.vista.getVerTabla().getFormP().getTfcif().getText();
-				ProveedorDAO p=new ProveedorDAO();
-				try {
-					if(p.delete(key)){
-						JOptionPane.showMessageDialog(vista,"El Proveedor ha sido borrado correctamente.");
+			//
+			if (e.getSource() == this.vista.getVerTabla().getFormP().getBtn()) {
+				System.out.println("boton eliminar proveedor");
+				if (JOptionPane
+						.showConfirmDialog(
+								null,
+								"Estas seguro de eliminar el registro de la bade de datos?",
+								"WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+					// yes option borrar
+					String key = this.vista.getVerTabla().getFormP().getTfcif().getText();
+					ProveedorDAO p = new ProveedorDAO();
+					try {
+						if (p.delete(key)) {
+							JOptionPane.showMessageDialog(vista,
+											"El Proveedor ha sido borrado correctamente.");
+							
+							refrescarViewDeleteProvedores();//refrescar la pantalla
+						}
+					} catch (HeadlessException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
-				} catch (HeadlessException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} else {
+					// no borra option
+					// no fa res
 				}
-			} else {
-			    // no option
-				//no fa res
-			}
-		//actualizar tabla proveedores
+			//
+			//boton Actualizar en la tabla proveedores
+			//
 			}else if(e.getSource()==this.vista.getVerTabla().getFormP().getBtnActualizar()){
 				System.out.println("boton actualizar");
 				if (JOptionPane.showConfirmDialog(null, "Estas seguro de actualizar el registro en la bade de datos?", "WARNING",
@@ -154,6 +167,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 						if(p.update(pr)){
 							System.out.println("modificado correctamente");
 							JOptionPane.showMessageDialog(vista,"El Proveedor ha sido actualizado correctamente.");
+							refrescarViewModProvedores();
 						}
 					} catch (NumberFormatException e1) {		
 						this.vista.getVerTabla().getFormP().getTfcompras().setBackground(Color.RED);
@@ -173,7 +187,10 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 					//no fa res
 				}
 			}//
-		}else if(e.getSource()==this.vista.getFormp().getBtnGuardar()){//boton añadir en la tabla proveedores
+		//
+		//btn save en formulario new Proveedor
+		//
+		}else if(e.getSource()==this.vista.getFormp().getBtnGuardar()){
 			  this.vista.getFormp().getTfcif().setBackground(Color.WHITE);
 			  this.vista.getFormp().getTfname().setBackground(Color.WHITE);
 			  this.vista.getFormp().getTfdireccion().setBackground(Color.WHITE);
@@ -191,6 +208,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				  
 				if(pd.create(p)){//insertado correctamente
 					JOptionPane.showMessageDialog(vista,"El Proveedor ha sido guarado correctamente.");
+					refrescarViewConsultaProvedores();
 				}else{//no se ha insetado en la bbdd
 					
 				}
@@ -209,11 +227,13 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			}
 					
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-							//OPERACIONES EMPLEADOS
+//								OPERACIONES EMPLEADOS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		}else if(this.vista.getVerTabla().getFormE()!=null && num_form==2 ){
-			//boton de borrar en la tabla Empleados
 			System.out.println("boton en carptera empleados");
+			//
+			//boton de borrar en la tabla Empleados
+			//
 			if(e.getSource()==this.vista.getVerTabla().getFormE().getBtn()){
 			if (JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar el registro de la bade de datos?", "WARNING",
 			        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -223,18 +243,19 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				try {
 					if(emp.delete(key)){
 						JOptionPane.showMessageDialog(vista,"El Empleado ha sido borrado correctamente.");
+						refrescarViewDeleteEmpleados();					
 					}
 				} catch (HeadlessException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			} else {
 			    // no option
 			}
+			//
 			//actualizar tabla Empleados
+			//
 			}else if(e.getSource()==this.vista.getVerTabla().getFormE().getBtnActualizar()){
 			System.out.println("boton actualizar");
 			if (JOptionPane.showConfirmDialog(null, "Estas seguro de actualizar el registro en la bade de datos?", "WARNING",
@@ -255,6 +276,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 					if(p.update(em)){
 						System.out.println("modificado correctamente");
 						JOptionPane.showMessageDialog(vista,"El Empleado ha sido actualizado correctamente.");
+						refrescarViewModEmpleados();
 					}
 				} catch (NumberFormatException e1) {		
 					this.vista.getVerTabla().getFormE().getTfsalario().setBackground(Color.RED);
@@ -275,8 +297,11 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			    // no option
 				//no fa res
 			}
-			}
-		}else if(e.getSource()==this.vista.getForme().getBtnGuardar()){//boton añadir en la tabla empleados
+			}//
+		//
+		////boton añadir en la tabla empleados
+		//
+		}else if(e.getSource()==this.vista.getForme().getBtnGuardar()){
 			  this.vista.getForme().getTfdni().setBackground(Color.WHITE);
 			  this.vista.getForme().getTfname().setBackground(Color.WHITE);
 			  this.vista.getForme().getTfapellido().setBackground(Color.WHITE);
@@ -300,6 +325,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				
 				if(ed.create(em)){//insertado correctamente
 					JOptionPane.showMessageDialog(vista,"El Empleado ha sido guarado correctamente.");
+					refrescarViewConsultaEmpleados();
 				}else{//no se ha insetado en la bbdd
 					
 				}
@@ -322,7 +348,9 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 								//OPERACIONES CLIENTES
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		}else if(this.vista.getVerTabla().getFormC()!=null && num_form==1){
+			//
 			//boton de borrar en la tabla Clientes
+			//
 			if(e.getSource()==this.vista.getVerTabla().getFormC().getBtn()){
 				if (JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar el registro de la bade de datos?", "WARNING",
 			        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -332,6 +360,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				try {
 					if(c.delete(key)){
 						JOptionPane.showMessageDialog(vista,"El Cliente ha sido borrado correctamente.");
+						refrescarViewDeleteClientes();
 					}
 				} catch (HeadlessException e1) {
 					// TODO Auto-generated catch block
@@ -343,7 +372,9 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				} else {
 					// no option
 				}
+		    //
 			//actualizar tabla Clientes
+			//	
 			}else if(e.getSource()==this.vista.getVerTabla().getFormC().getBtnActualizar()){
 			System.out.println("boton actualizar");
 			if (JOptionPane.showConfirmDialog(null, "Estas seguro de actualizar el registro en la bade de datos?", "WARNING",
@@ -363,15 +394,16 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 					if(p.update(c)){
 						System.out.println("modificado correctamente");
 						JOptionPane.showMessageDialog(vista,"El Cliente ha sido actualizado correctamente.");
+						refrescarViewModClientes();
 					}
 				} catch (NumberFormatException e1) {		
-					this.vista.getVerTabla().getFormE().getTfsalario().setBackground(Color.RED);
+
 				} catch (ExceptionDNI_CIF e1) {
-					this.vista.getVerTabla().getFormE().getTfdni().setBackground(Color.RED);
+					this.vista.getVerTabla().getFormC().getTfdni().setBackground(Color.RED);
 				} catch (ExceptionNombre e1) {
-					this.vista.getVerTabla().getFormE().getTfname().setBackground(Color.RED);
+					this.vista.getVerTabla().getFormC().getTfname().setBackground(Color.RED);
 				}catch (ExceptionNcuenta e1) {
-					this.vista.getVerTabla().getFormE().getTfcuenta().setBackground(Color.RED);
+					this.vista.getVerTabla().getFormC().getTfcuenta().setBackground(Color.RED);
 				} catch (ExceptionCompras e1) {
 					this.vista.getVerTabla().getFormC().getTfcompras().setBackground(Color.RED);
 				} catch (HeadlessException e1) {	
@@ -384,9 +416,10 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				//no fa res
 			}
 			}
-			
-		}else if(e.getSource()==this.vista.getFormc().getBtnGuardar()){//boton añadir en la tabla Clientes
-			//
+		//
+		//boton añadir en la tabla Clientes
+		//
+		}else if(e.getSource()==this.vista.getFormc().getBtnGuardar()){
 			this.vista.getFormc().getTfdni().setBackground(Color.WHITE);
 			this.vista.getFormc().getTfname().setBackground(Color.WHITE);
 			this.vista.getFormc().getTfapellido().setBackground(Color.WHITE);
@@ -408,6 +441,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				
 				if(cd.create(c)){//insertado correctamente
 					JOptionPane.showMessageDialog(vista,"El Cliente ha sido guarado correctamente.");
+					refrescarViewConsultaClientes();
 				}else{//no se ha insetado en la bbdd
 					
 				}
@@ -426,7 +460,118 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			} catch (SQLException e1) {
 				JOptionPane.showMessageDialog(vista,e1.getMessage()+"");
 			}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//									OPERACIONES PRODUCTOS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		}else if(this.vista.getVerTabla().getFormProductos()!=null && num_form==4){
+			//
+			//boton de borrar en la tabla Productos
+			//
+			if(e.getSource()==this.vista.getVerTabla().getFormProductos().getBtn()){
+				if (JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar el registro de la bade de datos?", "WARNING",
+			        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			    // yes option
+				String key=this.vista.getVerTabla().getFormProductos().getTfcod().getText();
+				ProductoDAO c=new ProductoDAO();
+				try {
+					if(c.delete(key)){
+						JOptionPane.showMessageDialog(vista,"El Producto ha sido borrado correctamente.");
+						refrescarViewDeleteProductos();
+					}
+				} catch (HeadlessException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				} else {
+					// no option
+				}
+		    //
+			//actualizar tabla Productos
+			//	
+			}else if(e.getSource()==this.vista.getVerTabla().getFormProductos().getBtnActualizar()){
+			System.out.println("boton actualizar");
+			if (JOptionPane.showConfirmDialog(null, "Estas seguro de actualizar el registro en la bade de datos?", "WARNING",
+			        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			    // yes option
+				String key=this.vista.getVerTabla().getFormProductos().getTfcod().getText();
+				ProductoDAO p=new ProductoDAO();
+				try {////////////
+					Producto c=new Producto(this.vista.getVerTabla().getFormProductos().getTfcod().getText(),
+							this.vista.getVerTabla().getFormProductos().getTfname().getText(),
+							this.vista.getVerTabla().getFormProductos().getTfdes().getText(),
+							Float.parseFloat(this.vista.getVerTabla().getFormProductos().getTfprecio().getText()),
+							Integer.parseInt(this.vista.getVerTabla().getFormProductos().getTfstock().getText()),
+							this.vista.getVerTabla().getFormProductos().getTfproveedor().getText());
+					if(p.update(c)){
+						System.out.println("modificado correctamente");
+						JOptionPane.showMessageDialog(vista,"El Cliente ha sido actualizado correctamente.");
+						refrescarViewModProductos();
+					}
+				} catch (NumberFormatException e1) {		
+					
+				}catch (ExceptionNombre e1) {
+					this.vista.getVerTabla().getFormProductos().getTfname().setBackground(Color.RED);
+				} catch (HeadlessException e1) {	
+					JOptionPane.showMessageDialog(vista,e1.getMessage()+"");
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(vista,e1.getMessage()+"");
+				} catch (ExceptionStock e1) {
+					this.vista.getVerTabla().getFormProductos().getTfstock().setBackground(Color.RED);
+					e1.printStackTrace();
+				} catch (ExceptionPrecio e1) {
+					this.vista.getVerTabla().getFormProductos().getTfprecio().setBackground(Color.RED);
+					e1.printStackTrace();
+				} 
+			} else {
+			    // no option
+				//no fa res
+			}
+			}
+		//
+		//boton añadir en la tabla Productos
+		//
+		}else if(e.getSource()==this.vista.getFormProductos().getBtnGuardar()){
+			System.out.println("Entra");
+			this.vista.getFormProductos().getTfcod().setBackground(Color.WHITE);
+			this.vista.getFormProductos().getTfname().setBackground(Color.WHITE);
+			this.vista.getFormProductos().getTfdes().setBackground(Color.WHITE);
+			this.vista.getFormProductos().getTfprecio().setBackground(Color.WHITE);
+			this.vista.getFormProductos().getTfstock().setBackground(Color.WHITE);
+			this.vista.getFormProductos().getTfproveedor().setBackground(Color.WHITE);
+			try {
+				Producto c=new Producto(this.vista.getFormProductos().getTfcod().getText(),
+										  this.vista.getFormProductos().getTfname().getText(),
+										  this.vista.getFormProductos().getTfdes().getText(),
+										  Float.parseFloat(this.vista.getFormProductos().getTfprecio().getText()),
+										  Integer.parseInt(this.vista.getFormProductos().getTfstock().getText()),
+										  this.vista.getFormProductos().getTfproveedor().getText());
+				ProductoDAO cd=new ProductoDAO();
+				
+				if(cd.create(c)){//insertado correctamente
+					JOptionPane.showMessageDialog(vista,"El Producto ha sido guarado correctamente.");
+					refrescarViewConsultaProductos();
+				}else{//no se ha insetado en la bbdd
+					System.out.println("No se a podido insertar el producto en la bbdd");
+				}
+			}catch (ExceptionNombre e1) {
+				this.vista.getFormProductos().getTfname().setBackground(Color.RED);
+			} catch (HeadlessException e1) {	
+				
+			}catch(NumberFormatException e1){
+				this.vista.getFormProductos().getTfprecio().setBackground(Color.RED);
+				this.vista.getFormProductos().getTfstock().setBackground(Color.RED);
+			}catch (SQLException e1) {
+				JOptionPane.showMessageDialog(vista,e1.getMessage()+"");
+			} catch (ExceptionStock e1) {
+				this.vista.getFormProductos().getTfstock().setBackground(Color.RED);
+				e1.printStackTrace();
+			} catch (ExceptionPrecio e1) {
+				this.vista.getFormProductos().getTfprecio().setBackground(Color.RED);
+				e1.printStackTrace();
+			} 
 		}
+		
 		
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -444,7 +589,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	    if (selectedNode.isLeaf()) {//si no es carpeta
 	    	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    				// ARBOL TRABAJADORES
+	    				// ARBOL EMPLEADOS
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    	
 	      if(selectedNode.toString().equals("Crear Trabajador")){
@@ -459,6 +604,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	    	  this.vista.remove(this.vista.getFormc());
 	    	  this.vista.remove(this.vista.getForme());
 	    	  this.vista.remove(this.vista.getFormp());
+	    	  this.vista.remove(this.vista.getFormProductos());
 	    	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
 	    	  JPFormularioEmpleados a=new JPFormularioEmpleados();
 	    	  this.vista.setForme(a);
@@ -467,58 +613,13 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	    	  this.vista.repaint();
 	    	  
 	      }else if(selectedNode.toString().equals("Consultar Trabajador")){
-	    	  modo="C";
-	    	  num_form=2;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("empleados");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("empleados");
-	    	  EmpleadoDAO emple=new EmpleadoDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	  refrescarViewConsultaEmpleados();
 	    	    	     	  
 	      }else if(selectedNode.toString().equals("Borrar Trabajador")){ 
-	    	  modo="D";
-	    	  num_form=2;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("empleados");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("empleados");
-	    	  EmpleadoDAO emple=new EmpleadoDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	 refrescarViewDeleteEmpleados();
 	    	  
 	      }else if(selectedNode.toString().equals("Modificar Trabajador")){ 
-	    	  modo="M";
-	    	  num_form=2;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("empleados");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("empleados");
-	    	  EmpleadoDAO emple=new EmpleadoDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	  refrescarViewModEmpleados();
 	    	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    	  				// ARBOL CLIENTE
@@ -536,6 +637,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 		    	  this.vista.remove(this.vista.getFormc());
 		    	  this.vista.remove(this.vista.getForme());
 		    	  this.vista.remove(this.vista.getFormp());
+		    	  this.vista.remove(this.vista.getFormProductos());
 		    	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
 		    	  JPFormularioClientes a=new JPFormularioClientes();
 		    	  this.vista.setFormc(a);
@@ -544,61 +646,16 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 		    	  this.vista.repaint();
 		    	  
 		  }else if(selectedNode.toString().equals("Consultar Cliente")){
-	    	  modo="C";
-	    	  num_form=1;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("clientes");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("clientes");
-	    	  ClienteDAO emple=new ClienteDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	  refrescarViewConsultaClientes();
 	    	  
 	      }else if(selectedNode.toString().equals("Borrar Cliente")){	    	  
-	    	  modo="D";
-	    	  num_form=1;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("clientes");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("clientes");
-	    	  ClienteDAO emple=new ClienteDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	 refrescarViewDeleteClientes();
 	    	  
 	      }else if(selectedNode.toString().equals("Modificar Cliente")){	    	  
-	    	  modo="M";
-	    	  num_form=1;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("clientes");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("clientes");
-	    	  ClienteDAO emple=new ClienteDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	  refrescarViewModClientes();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    	  			// ARBOL PROVEEDOR
+//						    	  ARBOL PROVEEDOR
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////	    	  
 	    	  
 	      }else if(selectedNode.toString().equals("Crear Proveedor")){
@@ -613,6 +670,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	    	  this.vista.remove(this.vista.getFormc());
 	    	  this.vista.remove(this.vista.getForme());
 	    	  this.vista.remove(this.vista.getFormp());
+	    	  this.vista.remove(this.vista.getFormProductos());
 	    	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
 	    	  JPFormularioProveedores a=new JPFormularioProveedores();
 	    	  this.vista.setFormp(a);
@@ -621,59 +679,14 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	    	  this.vista.repaint();
 	    	  
 	      }else if(selectedNode.toString().equals("Consultar Proveedor")){
-	    	  modo="C";
-	    	  num_form=3;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("proveedores");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("proveedores");
-	    	  ProveedorDAO emple=new ProveedorDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	  refrescarViewConsultaProvedores();
 	    	  
 	      }else if(selectedNode.toString().equals("Borrar Proveedor")){
-	    	  modo="D";
-	    	  num_form=3;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("proveedores");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("proveedores");
-	    	  ProveedorDAO emple=new ProveedorDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+
+	    	  refrescarViewDeleteProvedores();
 	    	  
 	      }else if(selectedNode.toString().equals("Modificar Proveedor")){
-	    	  modo="M";
-	    	  num_form=3;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("proveedores");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("proveedores");
-	    	  ProveedorDAO emple=new ProveedorDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
-	    	  //////////////////////////////////////////////
+	    	  refrescarViewModProvedores();
 	    	  
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    	  					// ARBOL PRODUCTO
@@ -683,65 +696,26 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	    	  System.out.println("Crear Producto.");
 	    	  modo="I";
 	    	  num_form=4;
-	        	 	  
-	      }else if(selectedNode.toString().equals("Consultar Producto")){
-	    	  System.out.println("Consultar Producto.");
-	    	  modo="C";
-	    	  num_form=4;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();    	  
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("producto");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("producto");
-	    	  ProductoDAO emple=new ProductoDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  
 	    	  this.vista.remove(this.vista.getFormc());
 	    	  this.vista.remove(this.vista.getForme());
 	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	  this.vista.remove(this.vista.getFormProductos());
+	    	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
+	    	  JPFormularioProductos a=new JPFormularioProductos();
+	    	  this.vista.setFormProductos(a);
+	    	  this.vista.getFormProductos().getBtnGuardar().setVisible(true);
+	    	  this.vista.getFormProductos().addListeners(this);
+	    	  this.vista.repaint();
+	        	 	  
+	      }else if(selectedNode.toString().equals("Consultar Producto")){
+	    	 refrescarViewConsultaProductos();
 	    	  
 	    	  
 	      }else if(selectedNode.toString().equals("Borrar Producto")){
-	    	  System.out.println("Borrar Producto.");
-	    	  modo="D";
-	    	  num_form=4;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();    	  
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("producto");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("producto");
-	    	  ProductoDAO emple=new ProductoDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	  refrescarViewDeleteProductos();
 	    	  
 	      }else if(selectedNode.toString().equals("Modificar Producto")){
-	    	  System.out.println("Modificar Producto.");
-	    	  modo="M";
-	    	  num_form=4;
-//	    	  ConectorBBDD bbdd=ConectorBBDD.saberEstado();    	  
-//	    	  Object[][] array=bbdd.consultaDatosTablaToArray("producto");
-//	    	  String [] titulos=bbdd.consultaTitulosTablaToArray("producto");
-	    	  ProductoDAO emple=new ProductoDAO();
-	    	  String [] titulos=emple.consultaTitulosTablaToArray();
-	    	  Object[][] array=emple.consultaDatosTablaToArray();
-	    	  
-	    	  JPVertabla a=new JPVertabla(array,titulos);
-	    	  this.vista.remove(this.vista.getFormc());
-	    	  this.vista.remove(this.vista.getForme());
-	    	  this.vista.remove(this.vista.getFormp());
-	    	  this.vista.remove(this.vista.getVerTabla());
-	    	  this.vista.setVerTabla(a);
-	    	  this.vista.getVerTabla().addlistenersToTable(this);
+	    	 refrescarViewModProductos();
 	    	  
 	      }
 	      
@@ -751,6 +725,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			this.vista.remove(this.vista.getFormc());
 			this.vista.remove(this.vista.getForme());
 			this.vista.remove(this.vista.getFormp());
+			this.vista.remove(this.vista.getFormProductos());
 			this.vista.remove(this.vista.getVerTabla());
 			this.vista.getVerTabla().setVisible(false);
 			this.vista.repaint();
@@ -812,9 +787,9 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-			LogsDAO log = new LogsDAO();
+			}			
 			try {
+				LogsDAO log = new LogsDAO();
 				if(log.isUserSystem(name, pass)){
 					if(this.vista.getLog().getChckbxNewCheckBox().isSelected()){
 						Lectura.saveFastLogin(name, pass);
@@ -827,6 +802,24 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 					this.vista.getPie().setStatusUser(name);
 					
 					rol=log.getRolUser(name, pass);
+					//dependiendo del rol que sea cargará un controlador u otro
+					switch(rol){
+					case 1://Ventas
+						System.out.println("Rol => Ventas");
+						break;
+					case 2://Compras
+						System.out.println("Rol => Compras");
+						break;
+					case 3://Contabilidad
+						System.out.println("Rol => CONTABILIDAD");
+						break;
+					case 4://Almacén
+						System.out.println("Rol => ALMACÉN");
+						break;
+						default:
+							System.out.println("Rol => ROOT");
+							break;
+					}
 					JOptionPane.showMessageDialog(vista, "Bienvenido a BAP ERP. Uer{"+name+" "+pass+" "+rol+"}");
 					
 				}else{
@@ -836,28 +829,10 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+				this.vista.getCargando().setVisible(false);
+				this.vista.getLog().setVisible(true);
+				JOptionPane.showMessageDialog(vista, "Problema al conectarse al servidor.");
 			}
-//			ConectorBBDD bbdd=ConectorBBDD.saberEstado();
-//			bbdd.consultaTabla("logs");
-//			if(bbdd.validUser(name,pass)){
-//				if(this.vista.getLog().getChckbxNewCheckBox().isSelected()){
-//					Lectura.saveFastLogin(name, pass);
-//				}else{
-//					Lectura.removeFastLogin();
-//				}
-//				this.vista.getCargando().setVisible(false);
-//				this.vista.getBienvenida().setVisible(true);
-//				this.vista.getPie().setVisible(true);
-//				this.vista.getPie().setStatusUser(name);
-//				
-//				//JOptionPane.showMessageDialog(vista, "Bienvenido a BAP ERP.");
-//				rol=bbdd.getRol();
-//				
-//			}else{
-//				this.vista.getCargando().setVisible(false);
-//				this.vista.getLog().setVisible(true);
-//				JOptionPane.showMessageDialog(vista, "El usuario o contraseña no existen.");
-//			}
 			break;
 		}
 	}
@@ -977,15 +952,219 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	}
 
 
-
-
-
-
-
-	
-
-	
-		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//				ACCIONES QUE SE REALIZAN EN DIFERENTES PARTES
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// REFERENTE A PROVEEDORES
+	//
+	public void refrescarViewDeleteProvedores(){
+	  modo="D";
+  	  num_form=3;
+  	  ProveedorDAO emple=new ProveedorDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	public void refrescarViewModProvedores(){
+	  modo="M";
+   	  num_form=3;
+   	  ProveedorDAO emple=new ProveedorDAO();
+   	  String [] titulos=emple.consultaTitulosTablaToArray();
+   	  Object[][] array=emple.consultaDatosTablaToArray();
+   	  
+   	  JPVertabla a=new JPVertabla(array,titulos);
+   	  this.vista.remove(this.vista.getFormc());
+   	  this.vista.remove(this.vista.getForme());
+   	  this.vista.remove(this.vista.getFormp());
+   	this.vista.remove(this.vista.getFormProductos());
+   	  this.vista.remove(this.vista.getVerTabla());
+   	  this.vista.setVerTabla(a);
+   	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	public void refrescarViewConsultaProvedores(){
+	  modo="C";
+  	  num_form=3;
+  	  ProveedorDAO emple=new ProveedorDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	//
+	//REFERENTE A TRABAJADORES
+	//
+	public void refrescarViewDeleteEmpleados(){
+  	  modo="D";
+  	  num_form=2;
+  	  EmpleadoDAO emple=new EmpleadoDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	public void refrescarViewModEmpleados(){
+	  modo="M";
+  	  num_form=2;
+  	  EmpleadoDAO emple=new EmpleadoDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	public void refrescarViewConsultaEmpleados(){
+	  modo="C";
+  	  num_form=2;
+  	  EmpleadoDAO emple=new EmpleadoDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	//
+	//REFERENTE A CLIENTES
+	//
+	public void refrescarViewDeleteClientes(){
+	  modo="D";
+  	  num_form=1;
+  	  ClienteDAO emple=new ClienteDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	public void refrescarViewModClientes(){
+	  modo="M";
+  	  num_form=1;
+  	  ClienteDAO emple=new ClienteDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	public void refrescarViewConsultaClientes(){
+		modo="C";
+  	  num_form=1;
+  	  ClienteDAO emple=new ClienteDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	//
+	//REFERNTE A PRODUCTOS
+	//
+	public void refrescarViewDeleteProductos(){
+	  System.out.println("Borrar Producto.");
+  	  modo="D";
+  	  num_form=4;
+  	  ProductoDAO emple=new ProductoDAO();
+  	  String [] titulos=emple.consultaTitulosTablaToArray();
+  	  Object[][] array=emple.consultaDatosTablaToArray();
+  	  
+  	  JPVertabla a=new JPVertabla(array,titulos);
+  	  this.vista.remove(this.vista.getFormc());
+  	  this.vista.remove(this.vista.getForme());
+  	  this.vista.remove(this.vista.getFormp());
+  	  this.vista.remove(this.vista.getFormProductos());
+  	  this.vista.remove(this.vista.getVerTabla());
+  	  this.vista.setVerTabla(a);
+  	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	public void refrescarViewModProductos(){
+	  System.out.println("Modificar Producto.");
+   	  modo="M";
+   	  num_form=4;
+   	  ProductoDAO emple=new ProductoDAO();
+   	  String [] titulos=emple.consultaTitulosTablaToArray();
+   	  Object[][] array=emple.consultaDatosTablaToArray();
+   	  
+   	  JPVertabla a=new JPVertabla(array,titulos);
+   	  this.vista.remove(this.vista.getFormc());
+   	  this.vista.remove(this.vista.getForme());
+   	  this.vista.remove(this.vista.getFormp());
+   	  this.vista.remove(this.vista.getFormProductos());
+   	  this.vista.remove(this.vista.getVerTabla());
+   	  this.vista.setVerTabla(a);
+   	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
+	public void refrescarViewConsultaProductos(){
+	  System.out.println("Consultar Producto.");
+   	  modo="C";
+   	  num_form=4;
+   	  ProductoDAO product=new ProductoDAO();
+   	  String [] titulos=product.consultaTitulosTablaToArray();
+   	  Object[][] array=product.consultaDatosTablaToArray();
+   	  
+   	  JPVertabla a=new JPVertabla(array,titulos);
+   	  
+   	  this.vista.remove(this.vista.getFormc());
+   	  this.vista.remove(this.vista.getForme());
+   	  this.vista.remove(this.vista.getFormp());
+   	  this.vista.remove(this.vista.getFormProductos());
+   	  this.vista.remove(this.vista.getVerTabla());
+   	  this.vista.setVerTabla(a);
+   	  this.vista.getVerTabla().addlistenersToTable(this);
+	}
 	}
 
 

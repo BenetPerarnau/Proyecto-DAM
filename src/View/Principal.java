@@ -2,11 +2,14 @@ package View;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -23,11 +26,12 @@ public class Principal extends JFrame{
 	
 	private JPLogin log;
 	private JPCargando cargando;
-	private JPBienvenida bienvenida;
+	private JPArbolNodos bienvenida;
 	private JPVertabla verTabla;
-	private JPFormularioProveedores formp;
-	private JPFormularioClientes formc;
-	private JPFormularioEmpleados forme;
+	private JPFormularioProveedores formproveedores;
+	private JPFormularioClientes formclientes;
+	private JPFormularioEmpleados formempleados;
+	private JPFormularioProductos formProductos;
 	private JPPie pie;
 	
 	public Principal(){
@@ -42,16 +46,18 @@ public class Principal extends JFrame{
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);//maximizar al iniciar
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		
 	}
 	
 	public JMenuItem getItem1desp1() {return item1desp1;}
 	public JPLogin getLog() {return log;}
 	public JPCargando getCargando() {return cargando;}
-	public JPBienvenida getBienvenida() {return bienvenida;}
+	public JPArbolNodos getBienvenida() {return bienvenida;}
 	public JPVertabla getVerTabla() {return verTabla;}
-	public JPFormularioProveedores getFormp() {return formp;}
-	public JPFormularioClientes getFormc() {return formc;}
-	public JPFormularioEmpleados getForme() {return forme;}
+	public JPFormularioProveedores getFormp() {return formproveedores;}
+	public JPFormularioClientes getFormc() {return formclientes;}
+	public JPFormularioEmpleados getForme() {return formempleados;}
+	public JPFormularioProductos getFormProductos(){return formProductos;}
 	public JPPie getPie() {return pie;}
 
 	public void setVerTabla(JPVertabla verTabla) {
@@ -61,20 +67,26 @@ public class Principal extends JFrame{
 	}
 	
 	public void setForme(JPFormularioEmpleados forme) {
-		this.forme = forme;
-		this.add(this.forme,BorderLayout.CENTER);//
+		this.formempleados = forme;
+		this.add(this.formempleados,BorderLayout.CENTER);//
 		this.paintAll(getGraphics());
 	}
 	
 	public void setFormp(JPFormularioProveedores formp) {
-		this.formp = formp;
-		this.add(this.formp,BorderLayout.CENTER);//
+		this.formproveedores = formp;
+		this.add(this.formproveedores,BorderLayout.CENTER);//
 		this.paintAll(getGraphics());
 	}
 
 	public void setFormc(JPFormularioClientes formc) {
-		this.formc = formc;
-		this.add(this.formc,BorderLayout.CENTER);//
+		this.formclientes = formc;
+		this.add(this.formclientes,BorderLayout.CENTER);//
+		this.paintAll(getGraphics());
+	}
+	
+	public void setFormProductos(JPFormularioProductos formProductos){
+		this.formProductos=formProductos;
+		this.add(this.formProductos,BorderLayout.CENTER);//
 		this.paintAll(getGraphics());
 	}
 
@@ -85,6 +97,7 @@ public class Principal extends JFrame{
 	}
 
 	public void addContent(){
+		
 		menuBar=new JMenuBar();//creación de la barra de menus
 		
 		desp1=new JMenu("BAP ERP");
@@ -102,15 +115,18 @@ public class Principal extends JFrame{
 		this.add(log, BorderLayout.PAGE_START);
 		
 		//
-		formc=new JPFormularioClientes();
-		formc.setVisible(false);
-		this.add(formc, BorderLayout.CENTER);
-		forme=new JPFormularioEmpleados();
-		forme.setVisible(false);
-		this.add(forme, BorderLayout.CENTER);
-		formp=new JPFormularioProveedores();
-		formp.setVisible(false);
-		this.add(formp, BorderLayout.CENTER);
+		formclientes=new JPFormularioClientes();
+		formclientes.setVisible(false);
+		this.add(formclientes, BorderLayout.CENTER);
+		formempleados=new JPFormularioEmpleados();
+		formempleados.setVisible(false);
+		this.add(formempleados, BorderLayout.CENTER);
+		formproveedores=new JPFormularioProveedores();
+		formproveedores.setVisible(false);
+		this.add(formproveedores, BorderLayout.CENTER);
+		formProductos=new JPFormularioProductos();
+		formProductos.setVisible(false);
+		this.add(formProductos, BorderLayout.CENTER);
 		//
 		
 		verTabla=new JPVertabla();
@@ -121,7 +137,7 @@ public class Principal extends JFrame{
 		this.add(cargando,BorderLayout.CENTER);
 		
 		//this.setLayout(new FlowLayout(FlowLayout.LEFT));
-		bienvenida=new JPBienvenida();
+		bienvenida=new JPArbolNodos();
 		bienvenida.setVisible(false);
 		this.add(bienvenida,BorderLayout.LINE_START);
 		/*
@@ -132,6 +148,7 @@ public class Principal extends JFrame{
 		pie=new JPPie();
 		pie.setVisible(false);
 		this.add(pie, BorderLayout.PAGE_END);
+		
 	}
 	public void addlisteners(ControladorROOT control){
 		item1desp1.addActionListener(control);

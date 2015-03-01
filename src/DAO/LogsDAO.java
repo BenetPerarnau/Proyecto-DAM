@@ -27,11 +27,12 @@ public class LogsDAO implements InterfaceDAO<Logs> {
 	private static final String SQL_READ_LOGIN="SELECT * FROM LOGS WHERE NOMBRE = ? AND PASSWORD = ?";
 	private static final String SQL_GET_ROL_USER="SELECT ROL FROM LOGS WHERE NOMBRE = ? AND PASSWORD = ?";
 
-	private static final ConectorBBDD cnn=ConectorBBDD.saberEstado();//aplicamos Singleton
+	private static ConectorBBDD cnn;//aplicamos Singleton
 	
 	@Override
 	public boolean create(Logs c) throws SQLException{
 		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_INSERT);
@@ -53,6 +54,7 @@ public class LogsDAO implements InterfaceDAO<Logs> {
 	@Override
 	public boolean delete(Object key)throws SQLException {
 		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_DELETE);
@@ -71,6 +73,7 @@ public class LogsDAO implements InterfaceDAO<Logs> {
 	@Override
 	public boolean update(Logs c) throws SQLException{
 		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_UPDATE);
@@ -94,6 +97,7 @@ public class LogsDAO implements InterfaceDAO<Logs> {
 		PreparedStatement ps;
 		ResultSet res;
 		Logs c=null;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_READ);
@@ -118,6 +122,7 @@ public class LogsDAO implements InterfaceDAO<Logs> {
 		ArrayList<Logs> array=new ArrayList<Logs>();
 		ResultSet res;
 		Logs c=null;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_READALL);
@@ -138,6 +143,7 @@ public class LogsDAO implements InterfaceDAO<Logs> {
 		PreparedStatement ps;
 		ResultSet res;
 		Logs c=null;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_READ_LOGIN);
@@ -161,6 +167,7 @@ public class LogsDAO implements InterfaceDAO<Logs> {
 		PreparedStatement ps;
 		ResultSet res;
 		Logs c=null;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_GET_ROL_USER);

@@ -5,62 +5,60 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import DTO.Proveedor;
-import Exceptions.ExceptionCompras;
-import Exceptions.ExceptionDNI_CIF;
+import DTO.Producto;
 import Exceptions.ExceptionNombre;
+import Exceptions.ExceptionPrecio;
+import Exceptions.ExceptionStock;
 import Model.ConectorBBDD;
 
-public class ProveedorDAO implements InterfaceDAO<Proveedor> {
-	private static final String SQL_INSERT="INSERT INTO PROVEEDORES "
-											+ "(CIF, NOMBRE, DIRECCION, TELEFONO, DESCRIPCION, COMPRAS)"
-											+ "VALUES(?,?,?,?,?,?)";
-	private static final String SQL_DELETE="DELETE FROM PROVEEDORES "
-											+ "WHERE CIF = ?";
-	private static final String SQL_UPDATE="UPDATE PROVEEDORES "
-											+ "SET NOMBRE = ?, DIRECCION = ?, TELEFONO = ?, "
-											+ "DESCRIPCION = ?, COMPRAS = ? "
-											+ "WHERE CIF = ?";
-	private static final String SQL_READ="SELECT * FROM PROVEEDORES WHERE CIF = ?";
-	private static final String SQL_READALL="SELECT * FROM PROVEEDORES";
+public class ProductoDAO implements InterfaceDAO<Producto>{
+	
+	private static final String SQL_INSERT="INSERT INTO PRODUCTOS "
+								+ "(COD, NOMBRE, DESCRIPCCION, PRECIOV, STOCK, PROVEEDOR) "
+								+ "VALUES(?,?,?,?,?,?)";
+	private static final String SQL_DELETE="DELETE FROM PRODUCTO "
+											+ "WHERE COD = ?";
+	private static final String SQL_UPDATE="UPDATE PRODUCTO "
+										+ "SET NOMBRE = ?, DESCRIPCCION = ?, PRECIOV = ?, "
+										+ "STOCK = ?, PROVEEDOR = ? "
+										+ "WHERE COD = ?";
+	private static final String SQL_READ="SELECT * FROM PRODUCTO WHERE COD = ?";
+	private static final String SQL_READALL="SELECT * FROM PRODUCTO";
 
 	private static ConectorBBDD cnn;//aplicamos Singleton
+
 	@Override
-	public boolean create(Proveedor c) throws SQLException{
+	public boolean create(Producto c) throws SQLException {
 		PreparedStatement ps;
 		cnn=ConectorBBDD.saberEstado();
-		try {
-			ps=cnn.getConexion().prepareStatement(SQL_INSERT);
-			ps.setString(1, c.getCIF());
-			ps.setString(2, c.getNom());
-			ps.setString(3, c.getAdr());
-			ps.setString(4, c.getTlf());
-			ps.setString(5, c.getDesc());
-			ps.setInt(6, c.getCompras());
-			
-			if(ps.executeUpdate()>0){
-				return true;
-			}
-
+		try{
+		ps=cnn.getConexion().prepareStatement(SQL_INSERT);
+		ps.setString(1, c.getCod());
+		ps.setString(2, c.getName());
+		ps.setString(3, c.getDesc());
+		ps.setFloat(4, c.getPrecio());
+		ps.setInt(5, c.getStock());
+		ps.setString(6, c.getProveedor());
+		
+		if(ps.executeUpdate()>0){
+			return true;
+		}
 		}finally{
 			cnn.cerrarConexion();
 		}
-		
 		return false;
 	}
 
 	@Override
-	public boolean delete(Object key)throws SQLException {
+	public boolean delete(Object key) throws SQLException {
 		PreparedStatement ps;
 		cnn=ConectorBBDD.saberEstado();
-		try {
+		try{
 			ps=cnn.getConexion().prepareStatement(SQL_DELETE);
 			ps.setString(1, key.toString());
-			
 			if(ps.executeUpdate()>0){
 				return true;
 			}
-			
 		}finally{
 			cnn.cerrarConexion();
 		}
@@ -68,23 +66,21 @@ public class ProveedorDAO implements InterfaceDAO<Proveedor> {
 	}
 
 	@Override
-	public boolean update(Proveedor c) throws SQLException{
+	public boolean update(Producto c) throws SQLException {
 		PreparedStatement ps;
 		cnn=ConectorBBDD.saberEstado();
-		try {
-			ps=cnn.getConexion().prepareStatement(SQL_UPDATE);
-			
-			ps.setString(1, c.getNom());
-			ps.setString(2, c.getAdr());
-			ps.setString(3, c.getTlf());
-			ps.setString(4, c.getDesc());
-			ps.setInt(5, c.getCompras());
-			ps.setString(6, c.getCIF());
-			
-			if(ps.executeUpdate()>0){
-				return true;
-			}
-			
+		try{
+		ps=cnn.getConexion().prepareStatement(SQL_UPDATE);
+		ps.setString(1, c.getName());
+		ps.setString(2, c.getDesc());
+		ps.setFloat(3, c.getPrecio());
+		ps.setInt(4, c.getStock());
+		ps.setString(5, c.getProveedor());
+		ps.setString(6, c.getCod() );
+		
+		if(ps.executeUpdate()>0){
+			return true;
+		}
 		}finally{
 			cnn.cerrarConexion();
 		}
@@ -92,26 +88,28 @@ public class ProveedorDAO implements InterfaceDAO<Proveedor> {
 	}
 
 	@Override
-	public Proveedor read(Object key)throws SQLException {
+	public Producto read(Object key) throws SQLException {
 		PreparedStatement ps;
 		ResultSet res;
-		Proveedor p=null;	
+		Producto p=null;
 		cnn=ConectorBBDD.saberEstado();
-		try {
-			ps=cnn.getConexion().prepareStatement(SQL_READ);
-			ps.setString(1, key.toString());
-			res=ps.executeQuery();
-			while(res.next()){
-				p=new Proveedor(res.getString(1),res.getString(2),res.getString(3),
-								res.getString(4), res.getString(5), res.getInt(6));
-			}
-		}catch (ExceptionDNI_CIF e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExceptionCompras e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		try{
+		ps=cnn.getConexion().prepareStatement(SQL_READ);
+		ps.setString(1, key.toString());
+		res=ps.executeQuery();
+		while(res.next()){
+			p=new Producto(
+							res.getString(1),res.getString(2),res.getString(3),
+							res.getFloat(4),res.getInt(5),res.getString(6)
+							);
+		}
 		} catch (ExceptionNombre e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionStock e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionPrecio e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
@@ -121,26 +119,30 @@ public class ProveedorDAO implements InterfaceDAO<Proveedor> {
 	}
 
 	@Override
-	public ArrayList<Proveedor> readAll() throws SQLException {
+	public ArrayList<Producto> readAll() throws SQLException {
 		PreparedStatement ps;
 		ResultSet res;
-		Proveedor p=null;
-		ArrayList<Proveedor> array=new ArrayList<Proveedor>();
+		Producto p;
+		ArrayList<Producto> array=null;
 		cnn=ConectorBBDD.saberEstado();
-		try {
-			ps=cnn.getConexion().prepareStatement(SQL_READALL);
-			res=ps.executeQuery();
-			while(res.next()){
-				array.add(new Proveedor(res.getString(1),res.getString(2),res.getString(3),
-						res.getString(4), res.getString(5), res.getInt(6)));
-			}
-		}catch (ExceptionDNI_CIF e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExceptionCompras e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		try{
+		array=new ArrayList<Producto>();
+		ps=cnn.getConexion().prepareStatement(SQL_READALL);
+		res=ps.executeQuery();
+		while(res.next()){
+			p=new Producto(
+					res.getString(1),res.getString(2),res.getString(3),
+					res.getFloat(4),res.getInt(5),res.getString(6)
+						);
+			array.add(p);
+		}
 		} catch (ExceptionNombre e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionStock e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionPrecio e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{

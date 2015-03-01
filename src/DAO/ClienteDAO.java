@@ -26,11 +26,13 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 	private static final String SQL_READ="SELECT * FROM CLIENTES WHERE DNI = ?";
 	private static final String SQL_READALL="SELECT * FROM CLIENTES";
 
-	private static final ConectorBBDD cnn=ConectorBBDD.saberEstado();//aplicamos Singleton
+	//private static final ConectorBBDD cnn=ConectorBBDD.saberEstado().;//aplicamos Singleton
+	private static ConectorBBDD cnn;//aplicamos Singleton
 	
 	@Override
 	public boolean create(Cliente c) throws SQLException{
 		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_INSERT);
@@ -56,6 +58,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 	@Override
 	public boolean delete(Object key)throws SQLException {
 		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_DELETE);
@@ -74,6 +77,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 	@Override
 	public boolean update(Cliente c) throws SQLException{
 		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_UPDATE);
@@ -101,6 +105,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 		PreparedStatement ps;
 		ResultSet res;
 		Cliente c=null;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_READ);
@@ -138,6 +143,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 		ArrayList<Cliente> array=new ArrayList<Cliente>();
 		ResultSet res;
 		Cliente c=null;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			
 			ps=cnn.getConexion().prepareStatement(SQL_READALL);
@@ -171,6 +177,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 		PreparedStatement ps;
 		String[] aux=null;
 		try {
+			cnn=ConectorBBDD.saberEstado();
 			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_READALL);
 			ResultSet resultado=ps.executeQuery();
 			int numcl=resultado.getMetaData().getColumnCount();
@@ -184,6 +191,8 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			cnn.cerrarConexion();
 		}
 		return aux;
 	}
@@ -192,6 +201,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 		ArrayList<String[]> array=new ArrayList<String[]>();
 		PreparedStatement consulta;
 		try {
+			cnn=ConectorBBDD.saberEstado();
 			consulta = (PreparedStatement) cnn.getConexion().prepareStatement(SQL_READALL);
 			ResultSet resultado=consulta.executeQuery();
 			
@@ -214,6 +224,8 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			cnn.cerrarConexion();
 		}
 		Object[][] aux=new Object[array.size()][array.get(0).length];
 		

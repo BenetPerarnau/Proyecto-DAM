@@ -27,11 +27,12 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 	private static final String SQL_READ="SELECT * FROM EMPLEADOS WHERE DNI = ?";
 	private static final String SQL_READALL="SELECT * FROM EMPLEADOS";
 	private static final String SQL_READ_ALL_TITLES_TABLA="SELECT * FROM EMPLEADOS";
-	private static final ConectorBBDD cnn=ConectorBBDD.saberEstado();//aplicamos Singleton
+	private static  ConectorBBDD cnn;//aplicamos Singleton
 
 	@Override
 	public boolean create(Empleado c) throws SQLException{
 		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_INSERT);
 			ps.setString(1, c.getDni());
@@ -57,7 +58,7 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 	@Override
 	public boolean delete(Object key) throws SQLException{
 		PreparedStatement ps;
-		
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_DELETE);
 			ps.setString(1, key.toString());
@@ -76,6 +77,7 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 	@Override
 	public boolean update(Empleado c) throws SQLException{
 		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_UPDATE);
 			ps.setString(1, c.getNom());
@@ -103,6 +105,7 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 		PreparedStatement ps;
 		ResultSet res;
 		Empleado a=null;
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_READ);
 			ps.setString(1, key.toString());
@@ -138,6 +141,7 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 		ResultSet res;
 		Empleado a=null;
 		ArrayList<Empleado> array=new ArrayList<Empleado>();
+		cnn=ConectorBBDD.saberEstado();
 		try {
 			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_READALL);
 			res=ps.executeQuery();
@@ -168,6 +172,7 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 		PreparedStatement ps;
 		String[] aux=null;
 		try {
+			cnn=ConectorBBDD.saberEstado();
 			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_READALL);
 			ResultSet resultado=ps.executeQuery();
 			int numcl=resultado.getMetaData().getColumnCount();
@@ -181,6 +186,8 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			cnn.cerrarConexion();
 		}
 		return aux;
 	}
@@ -189,6 +196,7 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 		ArrayList<String[]> array=new ArrayList<String[]>();
 		PreparedStatement consulta;
 		try {
+			cnn=ConectorBBDD.saberEstado();
 			consulta = (PreparedStatement) cnn.getConexion().prepareStatement(SQL_READALL);
 			ResultSet resultado=consulta.executeQuery();
 			
@@ -211,6 +219,8 @@ public class EmpleadoDAO implements InterfaceDAO<Empleado>{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			cnn.cerrarConexion();
 		}
 		Object[][] aux=new Object[array.size()][array.get(0).length];
 		
