@@ -3,13 +3,13 @@ package Constants;
 public class Constant {
 	
 	//Server
-	public final static String IP_SERVER="192.168.2.106";
+	public final static String IP_SERVER="192.168.1.105";
 	//BBDD
 	public final static String USER_BBDD="root";
 	public final static String PASSWORD_BBDD="";
 	public final static String NAME_BBDD="erp";
 	//Login
-	public final static int SLEEP_THREAD_LOGIN=2000;
+	public final static int SLEEP_THREAD_LOGIN=10;
 	//Text	
 	public final static String NAME_APP="BAP ERP";
 	//Pie

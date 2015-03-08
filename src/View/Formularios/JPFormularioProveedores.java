@@ -1,134 +1,121 @@
-package View;
+package View.Formularios;
 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import Constants.Constant;
+import Controler.ControladorCOMPRA;
 import Controler.ControladorROOT;
 
-public class JPFormularioClientes extends JPanel {
+public class JPFormularioProveedores extends JPanel {
 
 	private JTextField tfname;
-	private JTextField tfapellido;
-	private JTextField tfdni;
+	private JTextField tfcif;
 	private JTextField tfdireccion;
 	private JTextField tftelefono;
-	private JTextField tfmovil;
+	private JTextField tfdescripcion;
 	private JTextField tfcompras;
-	private JTextField tfcuenta;
 	private JButton btnEliminar;
 	private JButton btnGuardar;
+	private JLabel lbfoto;
 	private JButton btnActualizar;
+
 	/**
 	 * Create the panel.
 	 */
-	public JPFormularioClientes() {
+	public JPFormularioProveedores() {
 		setLayout(null);
 		
 		JLabel lbname = new JLabel("Nombre");
 		lbname.setBounds(6, 71, 61, 16);
 		add(lbname);
 		
-		JLabel lbapellido = new JLabel("Apellido");
-		lbapellido.setBounds(6, 99, 61, 16);
-		add(lbapellido);
-		
 		tfname = new JTextField();
 		tfname.setBounds(95, 65, 134, 28);
 		add(tfname);
 		tfname.setColumns(10);
 		
-		tfapellido = new JTextField();
-		tfapellido.setBounds(95, 93, 134, 28);
-		add(tfapellido);
-		tfapellido.setColumns(10);
+		JLabel lbcif = new JLabel("CIF");
+		lbcif.setBounds(6, 43, 61, 16);
+		add(lbcif);
 		
-		JLabel lbdni = new JLabel("DNI");
-		lbdni.setBounds(6, 43, 61, 16);
-		add(lbdni);
-		
-		tfdni = new JTextField();
-		tfdni.setBounds(95, 37, 134, 28);
-		add(tfdni);
-		tfdni.setColumns(10);
+		tfcif = new JTextField();
+		tfcif.setBounds(95, 37, 134, 28);
+		add(tfcif);
+		tfcif.setColumns(10);
 		
 		JLabel lbdireccion = new JLabel("Dirección");
-		lbdireccion.setBounds(6, 127, 61, 16);
+		lbdireccion.setBounds(6, 98, 61, 16);
 		add(lbdireccion);
 		
-		JLabel lbmovil = new JLabel("Movil");
-		lbmovil.setBounds(6, 183, 61, 16);
-		add(lbmovil);
+		JLabel lbdescripcion = new JLabel("Descripción");
+		lbdescripcion.setBounds(6, 154, 77, 16);
+		add(lbdescripcion);
 		
 		JLabel lbcompras = new JLabel("Compras");
-		lbcompras.setBounds(6, 211, 61, 16);
+		lbcompras.setBounds(6, 182, 61, 16);
 		add(lbcompras);
 		
 		JLabel lbtelefono = new JLabel("Telefono");
-		lbtelefono.setBounds(6, 155, 61, 16);
+		lbtelefono.setBounds(6, 126, 61, 16);
 		add(lbtelefono);
-		
-		JLabel lbcuenta = new JLabel("Nº Cuenta");
-		lbcuenta.setBounds(6, 239, 73, 16);
-		add(lbcuenta);
 		
 		tfdireccion = new JTextField();
 		tfdireccion.setColumns(10);
-		tfdireccion.setBounds(95, 121, 134, 28);
+		tfdireccion.setBounds(95, 92, 134, 28);
 		add(tfdireccion);
 		
 		tftelefono = new JTextField();
 		tftelefono.setColumns(10);
-		tftelefono.setBounds(95, 149, 134, 28);
+		tftelefono.setBounds(95, 120, 134, 28);
 		add(tftelefono);
 		
-		tfmovil = new JTextField();
-		tfmovil.setColumns(10);
-		tfmovil.setBounds(95, 177, 134, 28);
-		add(tfmovil);
+		tfdescripcion = new JTextField();
+		tfdescripcion.setColumns(10);
+		tfdescripcion.setBounds(95, 148, 134, 28);
+		add(tfdescripcion);
 		
 		tfcompras = new JTextField();
 		tfcompras.setColumns(10);
-		tfcompras.setBounds(95, 205, 134, 28);
+		tfcompras.setBounds(95, 176, 134, 28);
 		add(tfcompras);
 		
-		tfcuenta = new JTextField();
-		tfcuenta.setColumns(10);
-		tfcuenta.setBounds(95, 233, 134, 28);
-		add(tfcuenta);
-		
-		JLabel lbfoto = new JLabel("");
-		lbfoto.setBounds(241, 37, 183, 240);
+		 lbfoto = new JLabel("");
+		lbfoto.setBounds(241, 64, 216, 125);
 		add(lbfoto);
 		this.setPreferredSize(new Dimension(700, 300));
 		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(112, 265, 117, 29);
+		btnEliminar.setBounds(112, 209, 117, 29);
 		btnEliminar.setVisible(false);
 		add(btnEliminar);
 		
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(112, 265, 117, 29);
+		btnGuardar.setBounds(112, 209, 117, 29);
 		btnGuardar.setVisible(false);
 		add(btnGuardar);
 		
 		btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(112, 265, 117, 29);
+		btnActualizar.setBounds(112, 209, 117, 29);
 		btnActualizar.setVisible(false);
 		add(btnActualizar);
 	}
 
 	public JTextField getTfcompras() {return tfcompras;}
 	public JTextField getTfname() {return tfname;}
-	public JTextField getTfapellido() {return tfapellido;}
-	public JTextField getTfdni() {return tfdni;}
+	public JTextField getTfcif() {return tfcif;}
 	public JTextField getTfdireccion() {return tfdireccion;}
 	public JTextField getTftelefono() {return tftelefono;}
-	public JTextField getTfmovil() {return tfmovil;}
-	public JTextField getTfcuenta() {return tfcuenta;}
+	public JTextField getTfdescripcion() {return tfdescripcion;}
 	public JButton getBtn(){return btnEliminar;}
 	public JButton getBtnGuardar() {return btnGuardar;}
 	public JButton getBtnActualizar() {return btnActualizar;}
@@ -138,14 +125,18 @@ public class JPFormularioClientes extends JPanel {
 		btnGuardar.addActionListener(control);
 		btnActualizar.addActionListener(control);
 	}
+	public void addListeners(ControladorCOMPRA control){
+		btnEliminar.addActionListener(control);
+		btnGuardar.addActionListener(control);
+		btnActualizar.addActionListener(control);
+	}
+
 	public void setTfname(String tfname) {
 		this.tfname.setText(tfname);
 	}
-	public void setTfapellido(String tfapellido) {
-		this.tfapellido.setText(tfapellido);
-	}
+
 	public void setTfdni(String tfdni) {
-		this.tfdni.setText(tfdni);
+		this.tfcif.setText(tfdni);
 	}
 	public void setTfdireccion(String tfdireccion) {
 		this.tfdireccion.setText(tfdireccion);
@@ -154,44 +145,46 @@ public class JPFormularioClientes extends JPanel {
 		this.tftelefono.setText(tftelefono);
 	}
 	public void setTfmovil(String tfmovil) {
-		this.tfmovil.setText(tfmovil);
+		this.tfdescripcion.setText(tfmovil);
 	}
-
-	public void setTfcuenta(String tfcuenta) {
-		this.tfcuenta.setText(tfcuenta);
-	}
+	
 	public void setTfcompras(String tfcompras) {
 		this.tfcompras.setText( tfcompras);
 	}
 	public void rellenarTodo(String [] array){
-		tfdni.setText(array[0]);
+		tfcif.setText(array[0]);
 		tfname.setText(array[1]);
-		tfapellido.setText(array[2]);
-		tfdireccion.setText(array[3]);
-		tftelefono.setText(array[4]);
-		tfmovil.setText(array[5]);
-		tfcompras.setText(array[6]);
-		tfcuenta.setText(array[7]);
+		tfdireccion.setText(array[2]);
+		tftelefono.setText(array[3]);
+		tfdescripcion.setText(array[4]);
+		tfcompras.setText(array[5]);
+		
+		try {
+			ImageIcon fot = new ImageIcon(new URL("http://"+Constant.IP_SERVER+"/ERP/FotosProveedores/micro.jpg"));
+			Icon icono = new ImageIcon(fot.getImage().getScaledInstance(lbfoto.getWidth(), 
+					lbfoto.getHeight(), Image.SCALE_DEFAULT));
+			lbfoto.setIcon(icono);
+			lbfoto.repaint();
+			//lbfoto.setIcon(new ImageIcon(new URL("http://192.168.1.45/ERP/FotosEmpleados/.jpg")));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void desactivar(){
-		tfdni.setEditable(false);
+		tfcif.setEditable(false);
 		tfname.setEditable(false);
-		tfapellido.setEditable(false);
 		tfdireccion.setEditable(false);
 		tftelefono.setEditable(false);
-		tfmovil.setEditable(false);
+		tfdescripcion.setEditable(false);
 		tfcompras.setEditable(false);
-		tfcuenta.setEditable(false);
 	}
 	public void activar(){
-		tfdni.setEditable(false);
+		tfcif.setEditable(false);
 		tfname.setEditable(true);
-		tfapellido.setEditable(true);
 		tfdireccion.setEditable(true);
 		tftelefono.setEditable(true);
-		tfmovil.setEditable(true);
+		tfdescripcion.setEditable(true);
 		tfcompras.setEditable(true);
-		tfcuenta.setEditable(true);
 	}
-
 }

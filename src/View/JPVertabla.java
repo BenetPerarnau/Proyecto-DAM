@@ -19,7 +19,15 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.TableModelListener;
 import javax.swing.JButton;
 
+import View.Formularios.JPFormularioClientes;
+import View.Formularios.JPFormularioEmpleados;
+import View.Formularios.JPFormularioProductos;
+import View.Formularios.JPFormularioProveedores;
+import Controler.ControladorALMAC;
+import Controler.ControladorCOMPRA;
+import Controler.ControladorCONTA;
 import Controler.ControladorROOT;
+import Controler.ControladorVENTA;
 
 public class JPVertabla extends JPanel {
 	private JScrollPane scrollPane;
@@ -67,6 +75,30 @@ public class JPVertabla extends JPanel {
 	}
 
 	public void addlistenersToTable(ControladorROOT control){
+		//scrollPane.addMouseListener((MouseListener) control);
+		//table.getModel().addTableModelListener((TableModelListener) control);
+		table.addMouseListener((MouseListener) control);
+		//table.addAncestorListener((AncestorListener) control);
+	}
+	public void addlistenersToTable(ControladorVENTA control){
+		//scrollPane.addMouseListener((MouseListener) control);
+		//table.getModel().addTableModelListener((TableModelListener) control);
+		table.addMouseListener((MouseListener) control);
+		//table.addAncestorListener((AncestorListener) control);
+	}
+	public void addlistenersToTable(ControladorCOMPRA control){
+		//scrollPane.addMouseListener((MouseListener) control);
+		//table.getModel().addTableModelListener((TableModelListener) control);
+		table.addMouseListener((MouseListener) control);
+		//table.addAncestorListener((AncestorListener) control);
+	}
+	public void addlistenersToTable(ControladorCONTA control){
+		//scrollPane.addMouseListener((MouseListener) control);
+		//table.getModel().addTableModelListener((TableModelListener) control);
+		table.addMouseListener((MouseListener) control);
+		//table.addAncestorListener((AncestorListener) control);
+	}
+	public void addlistenersToTable(ControladorALMAC control){
 		//scrollPane.addMouseListener((MouseListener) control);
 		//table.getModel().addTableModelListener((TableModelListener) control);
 		table.addMouseListener((MouseListener) control);

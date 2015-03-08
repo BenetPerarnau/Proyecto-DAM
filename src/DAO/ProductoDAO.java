@@ -13,7 +13,7 @@ import Model.ConectorBBDD;
 
 public class ProductoDAO implements InterfaceDAO<Producto>{
 	
-	private static final String SQL_INSERT="INSERT INTO PRODUCTOS "
+	private static final String SQL_INSERT="INSERT INTO PRODUCTO "
 								+ "(COD, NOMBRE, DESCRIPCCION, PRECIOV, STOCK, PROVEEDOR) "
 								+ "VALUES(?,?,?,?,?,?)";
 	private static final String SQL_DELETE="DELETE FROM PRODUCTO "

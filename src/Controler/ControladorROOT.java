@@ -46,13 +46,14 @@ import Exceptions.ExceptionSalario;
 import Exceptions.ExceptionStock;
 import Model.ConectorBBDD;
 import Model.Lectura;
-import View.JPFormularioClientes;
-import View.JPFormularioEmpleados;
-import View.JPFormularioProductos;
-import View.JPFormularioProveedores;
+import View.JPArbolNodosROOT;
 import View.JPPie;
 import View.JPVertabla;
 import View.Principal;
+import View.Formularios.JPFormularioClientes;
+import View.Formularios.JPFormularioEmpleados;
+import View.Formularios.JPFormularioProductos;
+import View.Formularios.JPFormularioProveedores;
 
 public class ControladorROOT implements ActionListener , TreeSelectionListener, 
 									KeyListener, MouseListener, Runnable {
@@ -67,18 +68,22 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	private static String name;
 	private static String pass;
 	
+	private static ControladorROOT context;
+	
 	public ControladorROOT(Principal vista){
 		
 		this.vista=vista;
 		this.vista.addlisteners(this);
 		this.vista.getLog().addListeners(this);
-		this.vista.getBienvenida().addListener(this);
+		//this.vista.getBienvenidaRoot().addListener(this);
+		
+		context=this;
 				
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		System.out.println("Acciones controladas por la clase ControladorROOT");
 		if(e.getSource()==this.vista.getLog().getBtnIngresar()){//login implementado en el thread op 1
 			
 			name=this.vista.getLog().getTxtNombre();
@@ -90,12 +95,12 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			this.vista.repaint();
 			
 			op=1;
-			ControladorROOT b=this;
-			new Thread (b).start();
+			//ControladorROOT b=this;
+			new Thread (this).start();
 
 		}else if(e.getSource()==this.vista.getItem1desp1()){//cerrar sesión
 			
-			this.vista.getBienvenida().setVisible(false);
+			this.vista.getBienvenidaRoot().setVisible(false);
 			this.vista.getVerTabla().setVisible(false);
 			this.vista.getPie().setVisible(false);
 			this.vista.getLog().setVisible(true);
@@ -107,7 +112,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				JOptionPane.showMessageDialog(vista, "Tu usuario y password seran recordados en la proxima sesión.");
 			}
 			
-		}else if(e.getSource()==this.vista.getBienvenida().getTree()){//NS
+		}else if(e.getSource()==this.vista.getBienvenidaRoot().getTree()){//NS
 			
 			System.out.println("Entra");
 
@@ -137,10 +142,8 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 							refrescarViewDeleteProvedores();//refrescar la pantalla
 						}
 					} catch (HeadlessException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
@@ -186,7 +189,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				    // no option
 					//no fa res
 				}
-			}//
+			//
 		//
 		//btn save en formulario new Proveedor
 		//
@@ -225,7 +228,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			} catch (SQLException e1) {
 				JOptionPane.showMessageDialog(vista,e1.getMessage()+"");
 			}
-					
+		}		
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //								OPERACIONES EMPLEADOS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -297,7 +300,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			    // no option
 				//no fa res
 			}
-			}//
+			//
 		//
 		////boton añadir en la tabla empleados
 		//
@@ -344,6 +347,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			} catch (SQLException e1) {
 				JOptionPane.showMessageDialog(vista,e1.getMessage()+"");
 			}
+		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 								//OPERACIONES CLIENTES
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -415,7 +419,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			    // no option
 				//no fa res
 			}
-			}
+			
 		//
 		//boton añadir en la tabla Clientes
 		//
@@ -460,6 +464,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			} catch (SQLException e1) {
 				JOptionPane.showMessageDialog(vista,e1.getMessage()+"");
 			}
+		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //									OPERACIONES PRODUCTOS
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -527,7 +532,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			    // no option
 				//no fa res
 			}
-			}
+			
 		//
 		//boton añadir en la tabla Productos
 		//
@@ -571,6 +576,10 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 				e1.printStackTrace();
 			} 
 		}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							//OPERACIONES VENTAS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		}//add else if
 		
 		
 	}
@@ -609,7 +618,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	    	  JPFormularioEmpleados a=new JPFormularioEmpleados();
 	    	  this.vista.setForme(a);
 	    	  this.vista.getForme().getBtnGuardar().setVisible(true);
-	    	  this.vista.getForme().addListeners(this);
+	    	  this.vista.getForme().addListeners(context);
 	    	  this.vista.repaint();
 	    	  
 	      }else if(selectedNode.toString().equals("Consultar Trabajador")){
@@ -716,6 +725,44 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 	    	  
 	      }else if(selectedNode.toString().equals("Modificar Producto")){
 	    	 refrescarViewModProductos();
+	    	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    	 					// ARBOL VENTAS
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////	    	 
+	      }else if(selectedNode.toString().equals("Crear Venta")){
+	    	  
+//	    	  System.out.println("Crear Producto.");
+//	    	  modo="I";
+//	    	  num_form=5;
+//	    	  this.vista.remove(this.vista.getFormc());
+//	    	  this.vista.remove(this.vista.getForme());
+//	    	  this.vista.remove(this.vista.getFormp());
+//	    	  this.vista.remove(this.vista.getFormProductos());
+//	    	  this.vista.remove(this.vista.getVerTabla());//limpiar la ventana antes de mostrar otra
+//	    	  JPFormularioProductos a=new JPFormularioProductos();
+//	    	  this.vista.setFormProductos(a);
+//	    	  this.vista.getFormProductos().getBtnGuardar().setVisible(true);
+//	    	  this.vista.getFormProductos().addListeners(this);
+//	    	  this.vista.repaint();
+	    	  
+	      }else if(selectedNode.toString().equals("Consultar Venta")){
+	    	  
+	      }else if(selectedNode.toString().equals("Borrar Venta")){
+	    	  
+	      }else if(selectedNode.toString().equals("Modificar Venta")){
+	    	  
+	    	  
+	    	  
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    	  				  // ARBOL COMPRAS
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////    	
+	      }else if(selectedNode.toString().equals("Crear Compra")){
+	    	  
+	      }else if(selectedNode.toString().equals("Consultar Compra")){
+	    	  
+	      }else if(selectedNode.toString().equals("Borrar Compra")){
+	    	  
+	      }else if(selectedNode.toString().equals("Modificar Compra")){
 	    	  
 	      }
 	      
@@ -730,6 +777,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 			this.vista.getVerTabla().setVisible(false);
 			this.vista.repaint();
 	    }
+	    
 	  }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -797,7 +845,7 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 						Lectura.removeFastLogin();
 					}
 					this.vista.getCargando().setVisible(false);
-					this.vista.getBienvenida().setVisible(true);
+					//this.vista.getBienvenidaRoot().setVisible(true);
 					this.vista.getPie().setVisible(true);
 					this.vista.getPie().setStatusUser(name);
 					
@@ -806,18 +854,26 @@ public class ControladorROOT implements ActionListener , TreeSelectionListener,
 					switch(rol){
 					case 1://Ventas
 						System.out.println("Rol => Ventas");
+						ControladorVENTA c=new ControladorVENTA(vista);
 						break;
 					case 2://Compras
 						System.out.println("Rol => Compras");
+						ControladorCOMPRA v=new ControladorCOMPRA(vista);
 						break;
 					case 3://Contabilidad
 						System.out.println("Rol => CONTABILIDAD");
+						ControladorCONTA co=new ControladorCONTA(vista);
 						break;
 					case 4://Almacén
 						System.out.println("Rol => ALMACÉN");
+						ControladorALMAC almac=new ControladorALMAC(vista);
 						break;
 						default:
 							System.out.println("Rol => ROOT");
+							this.vista.setTreeRoot(new JPArbolNodosROOT());
+							this.vista.getBienvenidaRoot().setVisible(true);
+							this.vista.getBienvenidaRoot().addListener(context);
+							this.vista.repaint();
 							break;
 					}
 					JOptionPane.showMessageDialog(vista, "Bienvenido a BAP ERP. Uer{"+name+" "+pass+" "+rol+"}");

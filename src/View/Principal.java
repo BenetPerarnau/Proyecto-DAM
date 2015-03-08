@@ -14,8 +14,16 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import View.Formularios.JPFormularioClientes;
+import View.Formularios.JPFormularioEmpleados;
+import View.Formularios.JPFormularioProductos;
+import View.Formularios.JPFormularioProveedores;
 import Constants.Constant;
+import Controler.ControladorALMAC;
+import Controler.ControladorCOMPRA;
+import Controler.ControladorCONTA;
 import Controler.ControladorROOT;
+import Controler.ControladorVENTA;
 
 
 public class Principal extends JFrame{
@@ -26,7 +34,11 @@ public class Principal extends JFrame{
 	
 	private JPLogin log;
 	private JPCargando cargando;
-	private JPArbolNodos bienvenida;
+	private JPArbolNodosROOT bienvenidaRoot;
+	private JPArbolNodosVENTA bienvenidaVenta;
+	private JPArbolNodosCOMPRA bienvenidaCompra;
+	private JPArbolNodosCONTA bienvenidaConta;
+	private JPArbolNodosALMA bienvenidaAlma;
 	private JPVertabla verTabla;
 	private JPFormularioProveedores formproveedores;
 	private JPFormularioClientes formclientes;
@@ -52,7 +64,12 @@ public class Principal extends JFrame{
 	public JMenuItem getItem1desp1() {return item1desp1;}
 	public JPLogin getLog() {return log;}
 	public JPCargando getCargando() {return cargando;}
-	public JPArbolNodos getBienvenida() {return bienvenida;}
+	public JPArbolNodosROOT getBienvenidaRoot() {return bienvenidaRoot;}
+	public JPArbolNodosVENTA getBienvenidaVenta() {return bienvenidaVenta;}
+	
+	public JPArbolNodosCOMPRA getBienvenidaCompra() {return bienvenidaCompra;}
+	public JPArbolNodosCONTA getBienvenidaConta() {return bienvenidaConta;}
+	public JPArbolNodosALMA getBienvenidaAlma() {return bienvenidaAlma;}
 	public JPVertabla getVerTabla() {return verTabla;}
 	public JPFormularioProveedores getFormp() {return formproveedores;}
 	public JPFormularioClientes getFormc() {return formclientes;}
@@ -95,7 +112,32 @@ public class Principal extends JFrame{
 		this.add(this.pie,BorderLayout.PAGE_END);//
 		this.paintAll(getGraphics());
 	}
-
+	
+	public void setTreeRoot(JPArbolNodosROOT treeRoot){
+		this.bienvenidaRoot=treeRoot;
+		this.add(this.bienvenidaRoot, BorderLayout.LINE_START);
+		this.paintAll(getGraphics());
+	}
+	public void setTreeVenta(JPArbolNodosVENTA treeVenta){
+		this.bienvenidaVenta=treeVenta;
+		this.add(this.bienvenidaVenta, BorderLayout.LINE_START);
+		this.paintAll(getGraphics());
+	}
+	public void setTreeCOMPRA(JPArbolNodosCOMPRA treeCompra){
+		this.bienvenidaCompra=treeCompra;
+		this.add(this.bienvenidaCompra, BorderLayout.LINE_START);
+		this.paintAll(getGraphics());
+	}
+	public void setTreeCONTA(JPArbolNodosCONTA treeConta){
+		this.bienvenidaConta=treeConta;
+		this.add(this.bienvenidaConta, BorderLayout.LINE_START);
+		this.paintAll(getGraphics());
+	}
+	public void setTreeALMA(JPArbolNodosALMA treeAlma){
+		this.bienvenidaAlma=treeAlma;
+		this.add(this.bienvenidaAlma, BorderLayout.LINE_START);
+		this.paintAll(getGraphics());
+	}
 	public void addContent(){
 		
 		menuBar=new JMenuBar();//creación de la barra de menus
@@ -137,9 +179,17 @@ public class Principal extends JFrame{
 		this.add(cargando,BorderLayout.CENTER);
 		
 		//this.setLayout(new FlowLayout(FlowLayout.LEFT));
-		bienvenida=new JPArbolNodos();
-		bienvenida.setVisible(false);
-		this.add(bienvenida,BorderLayout.LINE_START);
+		
+		bienvenidaVenta=new JPArbolNodosVENTA();
+		bienvenidaVenta.setVisible(false);
+		this.add(bienvenidaVenta,BorderLayout.LINE_START);
+		
+		
+		bienvenidaRoot=new JPArbolNodosROOT();
+		bienvenidaRoot.setVisible(false);
+		this.add(bienvenidaRoot,BorderLayout.LINE_START);
+		
+		
 		/*
 		verTabla=new JPVertabla();
 		verTabla.setVisible(false);
@@ -151,6 +201,18 @@ public class Principal extends JFrame{
 		
 	}
 	public void addlisteners(ControladorROOT control){
+		item1desp1.addActionListener(control);
+	}
+	public void addlisteners(ControladorVENTA control){
+		item1desp1.addActionListener(control);
+	}
+	public void addlisteners(ControladorCOMPRA control){
+		item1desp1.addActionListener(control);
+	}
+	public void addlisteners(ControladorCONTA control){
+		item1desp1.addActionListener(control);
+	}
+	public void addlisteners(ControladorALMAC control){
 		item1desp1.addActionListener(control);
 	}
 	public void repintar(){

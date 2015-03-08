@@ -1,4 +1,4 @@
-package View;
+package View.Formularios;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -13,7 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import Constants.Constant;
+import Controler.ControladorALMAC;
+import Controler.ControladorCOMPRA;
 import Controler.ControladorROOT;
+import Controler.ControladorVENTA;
 
 public class JPFormularioProductos extends JPanel {
 
@@ -120,6 +123,21 @@ public class JPFormularioProductos extends JPanel {
 	public JButton getBtnActualizar() {return btnActualizar;}
 
 	public void addListeners(ControladorROOT control){
+		btnEliminar.addActionListener(control);
+		btnGuardar.addActionListener(control);
+		btnActualizar.addActionListener(control);
+	}
+	public void addListeners(ControladorVENTA control){
+		btnEliminar.addActionListener(control);
+		btnGuardar.addActionListener(control);
+		btnActualizar.addActionListener(control);
+	}
+	public void addListeners(ControladorCOMPRA control){
+		btnEliminar.addActionListener(control);
+		btnGuardar.addActionListener(control);
+		btnActualizar.addActionListener(control);
+	}
+	public void addListeners(ControladorALMAC control){
 		btnEliminar.addActionListener(control);
 		btnGuardar.addActionListener(control);
 		btnActualizar.addActionListener(control);

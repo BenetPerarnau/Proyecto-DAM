@@ -13,19 +13,19 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 
-import Controler.ControladorROOT;
+import Controler.ControladorVENTA;
 import Model.RendererArbol;
 
-public class JPArbolNodos extends JPanel {
+public class JPArbolNodosVENTA extends JPanel {
 
 	private final String[] cl={"Crear Cliente","Consultar Cliente","Modificar Cliente","Borrar Cliente"};
-	private final String[] pr={"Crear Proveedor","Consultar Proveedor","Modificar Proveedor","Borrar Proveedor"};
-	private final String[] tr={"Crear Trabajador","Consultar Trabajador","Modificar Trabajador","Borrar Trabajador"};
-	private final String[] pro={"Crear Producto","Consultar Producto","Modificar Producto","Borrar Producto"};
+	private final String[] vent={"Crear Venta","Consultar Venta","Modificar Venta","Borrar Venta"};
+	private final String[] pro={"Consultar Producto"};
+	
 	private JTree tree;
 	
 	
-	public JPArbolNodos() {
+	public JPArbolNodosVENTA() {
 		this.setBackground(Color.GRAY);
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(250,250));
@@ -34,38 +34,33 @@ public class JPArbolNodos extends JPanel {
 		//tree.setBounds(10, 10, 200, 175);
 		
 		
-		DefaultMutableTreeNode raiz=new DefaultMutableTreeNode("BAP OPERACIONES");
+		DefaultMutableTreeNode raiz=new DefaultMutableTreeNode("BAP OPERACIONES (ROL VENTAS)");
 		DefaultMutableTreeNode nodocl=new DefaultMutableTreeNode("Clientes");
-		DefaultMutableTreeNode nodopr=new DefaultMutableTreeNode("Proveedores");
-		DefaultMutableTreeNode nodotr=new DefaultMutableTreeNode("Empleados");
-		DefaultMutableTreeNode nodopro=new DefaultMutableTreeNode("Productos");
+		DefaultMutableTreeNode nodoVenta=new DefaultMutableTreeNode("Ventas");
+		DefaultMutableTreeNode nodoProduct=new DefaultMutableTreeNode("Producto");
 		
 		for(String a: cl){
 			DefaultMutableTreeNode aux=new DefaultMutableTreeNode();
 			aux.setUserObject(a);
 			nodocl.add(aux);
 		}
+
+		for(String a:vent){
+			DefaultMutableTreeNode aux=new DefaultMutableTreeNode();
+			aux.setUserObject(a);
+			nodoVenta.add(aux);
+		}
 		
-		for(String a: pr){
+		for(String a:pro){
 			DefaultMutableTreeNode aux=new DefaultMutableTreeNode();
 			aux.setUserObject(a);
-			nodopr.add(aux);
-		}
-		for(String a: tr){
-			DefaultMutableTreeNode aux=new DefaultMutableTreeNode();
-			aux.setUserObject(a);
-			nodotr.add(aux);
-		}
-		for(String a: pro){
-			DefaultMutableTreeNode aux=new DefaultMutableTreeNode();
-			aux.setUserObject(a);
-			nodopro.add(aux);
+			nodoProduct.add(aux);
 		}
 			
 		raiz.add(nodocl);
-		raiz.add(nodopr);
-		raiz.add(nodotr);
-		raiz.add(nodopro);
+		raiz.add(nodoVenta);
+		raiz.add(nodoProduct);
+
 		
 		DefaultTreeModel modelo=new DefaultTreeModel(raiz);
 		
@@ -77,7 +72,7 @@ public class JPArbolNodos extends JPanel {
 		add(sp1, BorderLayout.CENTER);
 	}
 	
-	public void addListener(ControladorROOT control){
+	public void addListener(ControladorVENTA control){
 		 tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		 tree.addTreeSelectionListener(control);
 	}
