@@ -1,61 +1,84 @@
 package DAO;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import DTO.Proveedor;
-import Exceptions.ExceptionCompras;
+import com.mysql.jdbc.PreparedStatement;
+
+import DTO.Compra;
+import DTO.Empleado;
+import DTO.Factura;
+import DTO.Venta;
 import Exceptions.ExceptionDNI_CIF;
+import Exceptions.ExceptionNcuenta;
 import Exceptions.ExceptionNombre;
+import Exceptions.ExceptionPrecio;
+import Exceptions.ExceptionSalario;
 import Model.ConectorBBDD;
 
-public class ProveedorDAO implements InterfaceDAO<Proveedor> {
-	private static final String SQL_INSERT="INSERT INTO PROVEEDORES "
-											+ "(CIF, NOMBRE, DIRECCION, TELEFONO, DESCRIPCION, COMPRAS)"
-											+ "VALUES(?,?,?,?,?,?)";
-	private static final String SQL_DELETE="DELETE FROM PROVEEDORES "
-											+ "WHERE CIF = ?";
-	private static final String SQL_UPDATE="UPDATE PROVEEDORES "
-											+ "SET NOMBRE = ?, DIRECCION = ?, TELEFONO = ?, "
-											+ "DESCRIPCION = ?, COMPRAS = ? "
-											+ "WHERE CIF = ?";
-	private static final String SQL_READ="SELECT * FROM PROVEEDORES WHERE CIF = ?";
-	private static final String SQL_READALL="SELECT * FROM PROVEEDORES";
-
-	private static ConectorBBDD cnn;//aplicamos Singleton
+public class CompraDAO implements InterfaceDAO<Compra> {
+	
+	private static final String SQL_INSERT="INSERT INTO COMPRAS "
+							+ "(ID, CANTIDA, PRODUCTO, PROVEEDOR) "
+							+ "VALUES(?,?,?,?)";
+	private static final String SQL_DELETE="DELETE FROM COMPRAS "
+								+ "WHERE ID = ?";
+	private static final String SQL_UPDATE="UPDATE COMPRAS "
+								+ "SET CANTIDA = ?, PRODUCTO = ?, PROVEEDOR=? "
+								+ "WHERE ID = ?";
+	private static final String SQL_READ="SELECT * FROM COMPRAS WHERE ID = ?";
+	private static final String SQL_READALL="SELECT * FROM COMPRAS";
+	private static  ConectorBBDD cnn;//aplicamos Singleton
+	
 	@Override
-	public boolean create(Proveedor c) throws SQLException{
+	public boolean create(Compra c) throws SQLException {
 		PreparedStatement ps;
 		cnn=ConectorBBDD.saberEstado();
 		try {
-			ps=cnn.getConexion().prepareStatement(SQL_INSERT);
-			ps.setString(1, c.getCIF());
-			ps.setString(2, c.getNom());
-			ps.setString(3, c.getAdr());
-			ps.setString(4, c.getTlf());
-			ps.setString(5, c.getDesc());
-			ps.setInt(6, c.getCompras());
+			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_INSERT);
+			ps.setInt(1,c.getId());
+			ps.setInt(2, c.getCantidad());
+			ps.setString(3, c.getProducto());
+			ps.setString(4, c.getProveedor());
 			
 			if(ps.executeUpdate()>0){
 				return true;
 			}
-
+			
+		}finally{
+			cnn.cerrarConexion();
+		}
+		return false;
+	}
+	@Override
+	public boolean delete(Object key) throws SQLException {
+		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
+		try {
+			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_DELETE);
+			ps.setInt(1, Integer.parseInt(key.toString()));
+			
+			if(ps.executeUpdate()>0){
+				return true;
+			}
+			
 		}finally{
 			cnn.cerrarConexion();
 		}
 		
 		return false;
 	}
-
 	@Override
-	public boolean delete(Object key)throws SQLException {
+	public boolean update(Compra c) throws SQLException {
 		PreparedStatement ps;
 		cnn=ConectorBBDD.saberEstado();
 		try {
-			ps=cnn.getConexion().prepareStatement(SQL_DELETE);
-			ps.setString(1, key.toString());
+			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_UPDATE);
+			ps.setInt(1, c.getCantidad());
+			ps.setString(2, c.getProducto());
+			ps.setString(3, c.getProveedor());
+			ps.setInt(4, c.getId());
 			
 			if(ps.executeUpdate()>0){
 				return true;
@@ -66,81 +89,44 @@ public class ProveedorDAO implements InterfaceDAO<Proveedor> {
 		}
 		return false;
 	}
-
 	@Override
-	public boolean update(Proveedor c) throws SQLException{
-		PreparedStatement ps;
-		cnn=ConectorBBDD.saberEstado();
-		try {
-			ps=cnn.getConexion().prepareStatement(SQL_UPDATE);
-			
-			ps.setString(1, c.getNom());
-			ps.setString(2, c.getAdr());
-			ps.setString(3, c.getTlf());
-			ps.setString(4, c.getDesc());
-			ps.setInt(5, c.getCompras());
-			ps.setString(6, c.getCIF());
-			
-			if(ps.executeUpdate()>0){
-				return true;
-			}
-			
-		}finally{
-			cnn.cerrarConexion();
-		}
-		return false;
-	}
-
-	@Override
-	public Proveedor read(Object key)throws SQLException {
+	public Compra read(Object key) throws SQLException {
 		PreparedStatement ps;
 		ResultSet res;
-		Proveedor p=null;	
+		Compra a=null;
 		cnn=ConectorBBDD.saberEstado();
 		try {
-			ps=cnn.getConexion().prepareStatement(SQL_READ);
-			ps.setString(1, key.toString());
+			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_READ);
+			ps.setInt(1, Integer.parseInt(key.toString()));
 			res=ps.executeQuery();
+			
 			while(res.next()){
-				p=new Proveedor(res.getString(1),res.getString(2),res.getString(3),
-								res.getString(4), res.getString(5), res.getInt(6));
+				a=new Compra(res.getInt(1),res.getInt(2),res.getString(3),res.getString(4));
 			}
-		}catch (ExceptionDNI_CIF e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExceptionCompras e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExceptionNombre e) {
+			
+		} catch (ExceptionPrecio e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			cnn.cerrarConexion();
 		}
-		return p;
+		return a;
+		
 	}
-
 	@Override
-	public ArrayList<Proveedor> readAll() throws SQLException {
+	public ArrayList<Compra> readAll() throws SQLException {
 		PreparedStatement ps;
 		ResultSet res;
-		Proveedor p=null;
-		ArrayList<Proveedor> array=new ArrayList<Proveedor>();
+		Compra a=null;
+		ArrayList<Compra> array=new ArrayList<Compra>();
 		cnn=ConectorBBDD.saberEstado();
 		try {
-			ps=cnn.getConexion().prepareStatement(SQL_READALL);
+			ps=(PreparedStatement) cnn.getConexion().prepareStatement(SQL_READALL);
 			res=ps.executeQuery();
 			while(res.next()){
-				array.add(new Proveedor(res.getString(1),res.getString(2),res.getString(3),
-						res.getString(4), res.getString(5), res.getInt(6)));
+				array.add(new Compra(res.getInt(1),res.getInt(2),res.getString(3),res.getString(4)));
 			}
-		}catch (ExceptionDNI_CIF e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExceptionCompras e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExceptionNombre e) {
+		} catch (ExceptionPrecio e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
@@ -148,6 +134,7 @@ public class ProveedorDAO implements InterfaceDAO<Proveedor> {
 		}
 		return array;
 	}
+
 	public String[] consultaTitulosTablaToArray(){
 		PreparedStatement ps;
 		String[] aux=null;
@@ -214,4 +201,5 @@ public class ProveedorDAO implements InterfaceDAO<Proveedor> {
 		
 		return aux;
 	}
+
 }

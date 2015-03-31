@@ -65,7 +65,7 @@ public class JPFormularioProveedores extends JPanel {
 		lbcompras.setBounds(6, 182, 61, 16);
 		add(lbcompras);
 		
-		JLabel lbtelefono = new JLabel("Telefono");
+		JLabel lbtelefono = new JLabel("Teléfono");
 		lbtelefono.setBounds(6, 126, 61, 16);
 		add(lbtelefono);
 		

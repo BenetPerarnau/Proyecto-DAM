@@ -14,10 +14,13 @@ public class JPCargando extends JPanel  {
 
 	private JLabel cargando;
 	private ImageIcon imagen;
+	
 	public JPCargando() {
 		
-		imagen=new ImageIcon(getClass().getResource("../Img/Cargando.gif"));
-		
+		//imagen=new ImageIcon(getClass().getResource("../Img/Cargando.gif"));
+		imagen=new ImageIcon(JPCargando.class.getResource("/Img/Cargando.gif"));
+
+
 		cargando=new JLabel("");
 		cargando.setIcon(imagen);
 		this.add(cargando);

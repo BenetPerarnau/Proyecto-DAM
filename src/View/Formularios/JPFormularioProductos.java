@@ -7,6 +7,7 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,6 +27,8 @@ public class JPFormularioProductos extends JPanel {
 	private JTextField tfprecio;
 	private JTextField tfstock;
 	private JTextField tfproveedor;
+	private JComboBox comboProveedor;
+	
 	private JButton btnEliminar;
 	private JButton btnGuardar;
 	private JLabel lbfoto;
@@ -59,37 +62,47 @@ public class JPFormularioProductos extends JPanel {
 		lbddesc.setBounds(6, 98, 75, 16);
 		add(lbddesc);
 		
-		JLabel lbstock = new JLabel("Stock");
-		lbstock.setBounds(6, 154, 77, 16);
-		add(lbstock);
-		
-		JLabel lbproveedor = new JLabel("Proveedor");
-		lbproveedor.setBounds(6, 182, 75, 16);
-		add(lbproveedor);
-		
-		JLabel lbprecio = new JLabel("Precio");
-		lbprecio.setBounds(6, 126, 61, 16);
-		add(lbprecio);
-		
 		tfdes = new JTextField();
 		tfdes.setColumns(10);
 		tfdes.setBounds(105, 92, 134, 28);
 		add(tfdes);
 		
-		tfprecio = new JTextField();
-		tfprecio.setColumns(10);
-		tfprecio.setBounds(105, 120, 134, 28);
-		add(tfprecio);
+		JLabel lbstock = new JLabel("Stock");
+		lbstock.setBounds(6, 154, 77, 16);
+		add(lbstock);
 		
 		tfstock = new JTextField();
 		tfstock.setColumns(10);
 		tfstock.setBounds(105, 148, 134, 28);
 		add(tfstock);
 		
+		JLabel lbproveedor = new JLabel("Proveedor");
+		lbproveedor.setBounds(6, 182, 75, 16);
+		add(lbproveedor);
+		
 		tfproveedor = new JTextField();
 		tfproveedor.setColumns(10);
 		tfproveedor.setBounds(105, 176, 134, 28);
 		add(tfproveedor);
+		
+		comboProveedor = new JComboBox();
+		comboProveedor.setBounds(105, 176, 134, 28);
+		comboProveedor.addItem("Proveedores..");
+		comboProveedor.setVisible(false);
+		add(comboProveedor);
+		
+		JLabel lbprecio = new JLabel("Precio");
+		lbprecio.setBounds(6, 126, 61, 16);
+		add(lbprecio);
+		
+		tfprecio = new JTextField();
+		tfprecio.setColumns(10);
+		tfprecio.setBounds(105, 120, 134, 28);
+		add(tfprecio);
+		
+		
+		
+
 		
 		lbfoto = new JLabel("");
 		lbfoto.setBounds(251, 64, 216, 125);
@@ -121,6 +134,7 @@ public class JPFormularioProductos extends JPanel {
 	public JButton getBtn(){return btnEliminar;}
 	public JButton getBtnGuardar() {return btnGuardar;}
 	public JButton getBtnActualizar() {return btnActualizar;}
+	public JComboBox getComboProvedores(){return comboProveedor;}
 
 	public void addListeners(ControladorROOT control){
 		btnEliminar.addActionListener(control);

@@ -22,7 +22,7 @@ public class JPPie extends JPanel {
 	public JPPie() {
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		this.setPreferredSize(new Dimension(1000,20));
+		this.setPreferredSize(new Dimension(1000, 30));
 		
 		user=new JLabel("Name User Conected");
 		user.setBounds(372, 0, 61, 16);

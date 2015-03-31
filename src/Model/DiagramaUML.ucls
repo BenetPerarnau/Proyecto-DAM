@@ -1,6 +1,938 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="Exceptions.ExceptionCantidad" project="ERP" 
+    file="/ERP/src/Exceptions/ExceptionCantidad.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="170" x="317" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="Controler.ControladorALMAC" project="ERP" 
+    file="/ERP/src/Controler/ControladorALMAC.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="368" width="248" x="7106" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="DAO.CompraDAO" project="ERP" file="/ERP/src/DAO/CompraDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="236" x="9420" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="View.JPArbolNodosROOT" project="ERP" file="/ERP/src/View/JPArbolNodosROOT.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="260" width="224" x="6217" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="Model.ConectorBBDD" project="ERP" file="/ERP/src/Model/ConectorBBDD.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="170" width="190" x="9442" y="970"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="Controler.ControladorROOT" project="ERP" 
+    file="/ERP/src/Controler/ControladorROOT.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="782" width="248" x="7404" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="Roles.OpProductos" project="ERP" file="/ERP/src/Roles/OpProductos.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="242" width="260" x="527" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="View.Formularios.JPFormularioVenta" project="ERP" 
+    file="/ERP/src/View/Formularios/JPFormularioVenta.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="728" width="249" x="7702" y="2308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="Controler.ControladorCONTA" project="ERP" 
+    file="/ERP/src/Controler/ControladorCONTA.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="386" width="248" x="7702" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="DTO.Logs" project="ERP" file="/ERP/src/DTO/Logs.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="160" x="827" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="View.Formularios.JPFormularioFactura" project="ERP" 
+    file="/ERP/src/View/Formularios/JPFormularioFactura.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="818" width="249" x="7241" y="2308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="View.Formularios.JPFormularioEmpleados" project="ERP" 
+    file="/ERP/src/View/Formularios/JPFormularioEmpleados.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="800" width="238" x="8372" y="2308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="View.Formularios.JPFormularioClientes" project="ERP" 
+    file="/ERP/src/View/Formularios/JPFormularioClientes.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="746" width="236" x="8650" y="2308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="Roles.OpClientes" project="ERP" file="/ERP/src/Roles/OpClientes.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="242" width="260" x="1027" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="View.Formularios.JPFormularioProductos" project="ERP" 
+    file="/ERP/src/View/Formularios/JPFormularioProductos.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="692" width="249" x="6734" y="2308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="DTO.Cliente" project="ERP" file="/ERP/src/DTO/Cliente.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="331" x="10443" y="970"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="Constants.Constant" project="ERP" file="/ERP/src/Constants/Constant.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="185" x="1327" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="Exceptions.ExceptionStock" project="ERP" 
+    file="/ERP/src/Exceptions/ExceptionStock.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="150" x="1552" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="DAO.LogsDAO" project="ERP" file="/ERP/src/DAO/LogsDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="332" width="224" x="8596" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="DTO.Compra" project="ERP" file="/ERP/src/DTO/Compra.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="332" width="177" x="1742" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="Roles.OpCompras" project="ERP" file="/ERP/src/Roles/OpCompras.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="242" width="260" x="1959" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="View.JPArbolNodosALMA" project="ERP" file="/ERP/src/View/JPArbolNodosALMA.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="152" width="232" x="6481" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="Controler.ControladorCOMPRA" project="ERP" 
+    file="/ERP/src/Controler/ControladorCOMPRA.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="440" width="248" x="8000" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="View.JPPie" project="ERP" file="/ERP/src/View/JPPie.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="168" x="6774" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="Exceptions.ExceptionDNI_CIF" project="ERP" 
+    file="/ERP/src/Exceptions/ExceptionDNI_CIF.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="167" x="2259" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="Exceptions.ExceptionNcuenta" project="ERP" 
+    file="/ERP/src/Exceptions/ExceptionNcuenta.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="166" x="2466" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="DTO.Factura" project="ERP" file="/ERP/src/DTO/Factura.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="476" width="277" x="2672" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="View.JPLogin" project="ERP" file="/ERP/src/View/JPLogin.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="314" width="238" x="6982" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="DAO.VentaDAO" project="ERP" file="/ERP/src/DAO/VentaDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="236" x="9986" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="DTO.Proveedor" project="ERP" file="/ERP/src/DTO/Proveedor.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="422" width="279" x="2989" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="DAO.ProveedorDAO" project="ERP" file="/ERP/src/DAO/ProveedorDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="296" width="236" x="10538" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="DTO.Venta" project="ERP" file="/ERP/src/DTO/Venta.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="476" width="207" x="3308" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="Roles.OpVentas" project="ERP" file="/ERP/src/Roles/OpVentas.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="242" width="260" x="3555" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="View.Formularios.JPFormularioCompra" project="ERP" 
+    file="/ERP/src/View/Formularios/JPFormularioCompra.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="584" width="249" x="8083" y="2308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="Exceptions.ExceptionSalario" project="ERP" 
+    file="/ERP/src/Exceptions/ExceptionSalario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="159" x="3855" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="Model.Lectura" project="ERP" file="/ERP/src/Model/Lectura.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="207" x="4054" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="View.Formularios.JPFormularioProveedores" project="ERP" 
+    file="/ERP/src/View/Formularios/JPFormularioProveedores.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="620" width="249" x="8926" y="2308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="View.JPVertabla" project="ERP" file="/ERP/src/View/JPVertabla.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="404" width="290" x="8297" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="DAO.FacturaDAO" project="ERP" file="/ERP/src/DAO/FacturaDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="236" x="8860" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="View.JPCargando" project="ERP" file="/ERP/src/View/JPCargando.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="130" x="7281" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="DTO.Empleado" project="ERP" file="/ERP/src/DTO/Empleado.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="242" width="408" x="10814" y="970"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="View.JPArbolNodosVENTA" project="ERP" file="/ERP/src/View/JPArbolNodosVENTA.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="188" width="230" x="7451" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="Test" project="ERP" file="/ERP/src/Test.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="125" x="4301" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="Roles.OpProveedores" project="ERP" file="/ERP/src/Roles/OpProveedores.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="242" width="260" x="4466" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="Controler.ControladorVENTA" project="ERP" 
+    file="/ERP/src/Controler/ControladorVENTA.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="404" width="248" x="8298" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="Model.RendererArbol" project="ERP" file="/ERP/src/Model/RendererArbol.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="170" width="558" x="4766" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="Exceptions.ExceptionNombre" project="ERP" 
+    file="/ERP/src/Exceptions/ExceptionNombre.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="164" x="5364" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="Exceptions.ExceptionCompras" project="ERP" 
+    file="/ERP/src/Exceptions/ExceptionCompras.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="170" x="5568" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="View.Principal" project="ERP" file="/ERP/src/View/Principal.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="854" width="292" x="7702" y="970"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="View.JPArbolNodosCONTA" project="ERP" file="/ERP/src/View/JPArbolNodosCONTA.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="170" width="232" x="7742" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="Model.Seguretat" project="ERP" file="/ERP/src/Model/Seguretat.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="134" width="191" x="5778" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="DAO.ProductoDAO" project="ERP" file="/ERP/src/DAO/ProductoDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="368" width="244" x="9136" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="DAO.ClienteDAO" project="ERP" file="/ERP/src/DAO/ClienteDAO.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="236" x="10262" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="DAO.EmpleadoDAO" project="ERP" file="/ERP/src/DAO/EmpleadoDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="314" width="250" x="9696" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="Model.Persona" project="ERP" file="/ERP/src/Model/Persona.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="404" width="287" x="10814" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="DTO.Producto" project="ERP" file="/ERP/src/DTO/Producto.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="404" width="262" x="6009" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="View.JPArbolNodosCOMPRA" project="ERP" 
+    file="/ERP/src/View/JPArbolNodosCOMPRA.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="188" width="243" x="8014" y="1864"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="58" language="java" name="DAO.InterfaceDAO" project="ERP" file="/ERP/src/DAO/InterfaceDAO.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="152" width="232" x="9682" y="970"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="59" language="java" name="Roles.OpFacturas" project="ERP" file="/ERP/src/Roles/OpFacturas.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="242" width="260" x="6311" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="Roles.OpEmpleados" project="ERP" file="/ERP/src/Roles/OpEmpleados.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="242" width="260" x="6611" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="Exceptions.ExceptionPrecio" project="ERP" 
+    file="/ERP/src/Exceptions/ExceptionPrecio.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="155" x="6911" y="138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="62">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="63" name="formCompras"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="65">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="55"/>  
+  </generalization>  
+  <association id="66">    
+    <bendpoint x="7250" y="1864"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="67" name="formFacturas"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="70" name="cargando"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="72">    
+    <end type="SOURCE" refId="52"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="73">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="74" name="context"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="76">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="77" name="context"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="79">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="55"/>  
+  </generalization>  
+  <association id="80">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="81" name="bienvenidaAlma"/>      
+      <multiplicity id="82" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="83">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="84" name="pie"/>      
+      <multiplicity id="85" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="86">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="87" name="vista"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="90" name="context"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="92">    
+    <end type="SOURCE" refId="53"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="93">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="94" name="verTabla"/>      
+      <multiplicity id="95" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="97" name="formProveedores"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="100" name="cnn"/>      
+      <multiplicity id="101" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="102">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="103">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="104" name="cnn"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="106">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="107">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="108" name="vista"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="110">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="111" name="formClientes"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <bendpoint x="8659" y="1864"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="114" name="formclientes"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="116">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="117" name="cnn"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="119">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="120" name="cnn"/>      
+      <multiplicity id="121" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="122">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="123" name="bienvenidaVenta"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="42" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="125">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="126" name="vista"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <bendpoint x="6743" y="1864"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="129" name="formProductos"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="131">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="132" name="bienvenidaRoot"/>      
+      <multiplicity id="133" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="134">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="135">    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="136" name="cnn"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="138">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <realization id="139">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="140">    
+    <end type="SOURCE" refId="53" navigable="false">      
+      <attribute id="141" name="cnn"/>      
+      <multiplicity id="142" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="143">    
+    <bendpoint x="8638" y="1864"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="144" name="formempleados"/>      
+      <multiplicity id="145" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="146">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="147" name="log"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="149">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="150" name="cnn"/>      
+      <multiplicity id="151" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="152">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="153" name="context"/>      
+      <multiplicity id="154" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="155">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="156" name="formEmpleados"/>      
+      <multiplicity id="157" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="158">    
+    <bendpoint x="8617" y="1864"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="159" name="formCompras"/>      
+      <multiplicity id="160" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="161">    
+    <end type="SOURCE" refId="54"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="162">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="163" name="instancia"/>      
+      <multiplicity id="164" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="165">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="166" name="formVentas"/>      
+      <multiplicity id="167" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="168">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="169" name="vista"/>      
+      <multiplicity id="170" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="171">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="172" name="context"/>      
+      <multiplicity id="173" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="174">    
+    <end type="SOURCE" refId="52" navigable="false">      
+      <attribute id="175" name="cnn"/>      
+      <multiplicity id="176" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="177">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="178" name="formProductos"/>      
+      <multiplicity id="179" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="180">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="181" name="formFacturas"/>      
+      <multiplicity id="182" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="183">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="184" name="bienvenidaCompra"/>      
+      <multiplicity id="185" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="186">    
+    <bendpoint x="8680" y="1864"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="187" name="formproveedores"/>      
+      <multiplicity id="188" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="189">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="190" name="bienvenidaConta"/>      
+      <multiplicity id="191" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="192">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="193" name="vista"/>      
+      <multiplicity id="194" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="195">    
+    <bendpoint x="7711" y="1864"/>    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="196" name="formVentas"/>      
+      <multiplicity id="197" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

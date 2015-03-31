@@ -20,10 +20,15 @@ public class RendererArbol extends DefaultTreeCellRenderer{
 
     public RendererArbol() {
 
-    	imgconsultar = new ImageIcon(getClass().getResource("../Img/ImgTree/find.png"));
-    	imgnuevo = new ImageIcon(getClass().getResource("../Img/imgTree/new.png"));
-    	imgeliminar = new ImageIcon(getClass().getResource("../Img/ImgTree/delete.png"));
-    	imgmodificar = new ImageIcon(getClass().getResource("../Img/ImgTree/mod.png"));
+    	//imgconsultar = new ImageIcon(getClass().getResource("../Img/ImgTree/find.png"));
+    	//imgnuevo = new ImageIcon(getClass().getResource("../Img/imgTree/new.png"));
+    	//imgeliminar = new ImageIcon(getClass().getResource("../Img/ImgTree/delete.png"));
+    	//imgmodificar = new ImageIcon(getClass().getResource("../Img/ImgTree/mod.png"));
+    	
+    	imgconsultar = new ImageIcon(RendererArbol.class.getResource("/Img/ImgTree/find.png"));
+    	imgnuevo = new ImageIcon(RendererArbol.class.getResource("/Img/imgTree/new.png"));
+    	imgeliminar = new ImageIcon(RendererArbol.class.getResource("/Img/ImgTree/delete.png"));
+    	imgmodificar = new ImageIcon(RendererArbol.class.getResource("/Img/ImgTree/mod.png"));
 
     }
 

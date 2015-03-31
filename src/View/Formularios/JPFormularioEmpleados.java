@@ -116,11 +116,11 @@ public class JPFormularioEmpleados extends JPanel {
 		
 		tfcuenta = new JTextField();
 		tfcuenta.setColumns(10);
-		tfcuenta.setBounds(95, 261, 134, 28);
+		tfcuenta.setBounds(95, 261, 251, 28);
 		add(tfcuenta);
 		
 		lbfoto = new JLabel("");
-		lbfoto.setBounds(241, 43, 183, 240);
+		lbfoto.setBounds(352, 43, 183, 240);
 		add(lbfoto);
 		this.setPreferredSize(new Dimension(700, 329));
 		
@@ -200,9 +200,9 @@ public class JPFormularioEmpleados extends JPanel {
 		tfmovil.setText(array[5]);
 		tfpuesto.setText(array[6]);
 		tfsalario.setText(array[7]);
-		tfcuenta.setText(array[8]);
+		tfcuenta.setText(insertGionesInCuenta(array[8]));
 		try {
-			ImageIcon fot = new ImageIcon(new URL("http://"+Constant.IP_SERVER+"/ERP/FotosEmpleados/.jpg"));
+			ImageIcon fot = new ImageIcon(new URL("http://"+Constant.IP_SERVER+"/ERP/FotosEmpleados/def.jpg"));
 			Icon icono = new ImageIcon(fot.getImage().getScaledInstance(lbfoto.getWidth(), 
 					lbfoto.getHeight(), Image.SCALE_DEFAULT));
 			lbfoto.setIcon(icono);
@@ -234,5 +234,21 @@ public class JPFormularioEmpleados extends JPanel {
 		tfpuesto.setEditable(true);
 		tfsalario.setEditable(true);
 		tfcuenta.setEditable(true);
+	}
+	
+	public String insertGionesInCuenta(String cuentaSin){
+		String cuentaCon="";							 //    4   8   12  16  20
+														 //012345678911234567892123
+		StringBuffer str1 = new StringBuffer (cuentaSin);//000011112222333344445555
+		String aux = "-";
+		str1.insert (4, aux);
+		str1.insert(9, aux);
+		str1.insert(14, aux);
+		str1.insert(19, aux);
+		str1.insert(24, aux);
+		
+		cuentaCon=str1.toString();
+		
+		return cuentaCon;
 	}
 }

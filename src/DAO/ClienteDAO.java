@@ -184,7 +184,7 @@ public class ClienteDAO implements InterfaceDAO<Cliente> {
 			aux=new String[numcl];
 			while(resultado.next()){
 				for(int i=0; i<numcl; i++){
-					aux[i]=resultado.getMetaData().getColumnName(i+1);
+					aux[i]=resultado.getMetaData().getColumnName(i+1).toUpperCase();
 				}			
 			}
 			

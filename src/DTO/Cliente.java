@@ -6,10 +6,37 @@ import Exceptions.ExceptionNcuenta;
 import Exceptions.ExceptionNombre;
 import Model.Persona;
 
+/**
+ * 
+ * @author Benet
+ *
+ */
+/*
+ * Veamos un ejemplo con cuentas de La Caixa:
+
+- Código de cuenta: 2100 0813 61 0123456789
+
+- IBAN electrónico: ES79-2100-0813-6101-2345-6789 (ES es la identificación de España)
+ */
 public class Cliente extends Persona{
 
 	private int compras;
 	private String nCuenta;
+	/**
+	 * 
+	 * @param dni
+	 * @param nom
+	 * @param ape
+	 * @param adre
+	 * @param tlf
+	 * @param mvl
+	 * @param compras
+	 * @param nCuenta
+	 * @throws ExceptionDNI_CIF
+	 * @throws ExceptionNcuenta
+	 * @throws ExceptionCompras
+	 * @throws ExceptionNombre
+	 */
 	
 	public Cliente(String dni, String nom, String ape, String adre, String tlf,
 			String mvl, int compras, String nCuenta) throws ExceptionDNI_CIF, ExceptionNcuenta, ExceptionCompras, ExceptionNombre {

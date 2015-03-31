@@ -1,12 +1,18 @@
 package View.Formularios;
 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.net.MalformedURLException;
+import java.net.URL;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import Constants.Constant;
 import Controler.ControladorROOT;
 import Controler.ControladorVENTA;
 
@@ -23,6 +29,7 @@ public class JPFormularioClientes extends JPanel {
 	private JButton btnEliminar;
 	private JButton btnGuardar;
 	private JButton btnActualizar;
+	private JLabel lbfoto;
 	/**
 	 * Create the panel.
 	 */
@@ -98,11 +105,11 @@ public class JPFormularioClientes extends JPanel {
 		
 		tfcuenta = new JTextField();
 		tfcuenta.setColumns(10);
-		tfcuenta.setBounds(95, 233, 134, 28);
+		tfcuenta.setBounds(95, 233, 277, 28);
 		add(tfcuenta);
 		
-		JLabel lbfoto = new JLabel("");
-		lbfoto.setBounds(241, 37, 183, 240);
+		lbfoto = new JLabel("");
+		lbfoto.setBounds(241, 37, 210, 190);
 		add(lbfoto);
 		this.setPreferredSize(new Dimension(700, 300));
 		
@@ -177,7 +184,19 @@ public class JPFormularioClientes extends JPanel {
 		tftelefono.setText(array[4]);
 		tfmovil.setText(array[5]);
 		tfcompras.setText(array[6]);
-		tfcuenta.setText(array[7]);
+		tfcuenta.setText(insertGionesInCuenta(array[7])); //
+		
+		try {
+			ImageIcon fot = new ImageIcon(new URL("http://"+Constant.IP_SERVER+"/ERP/FotosClientes/def.jpg"));
+			Icon icono = new ImageIcon(fot.getImage().getScaledInstance(lbfoto.getWidth(), 
+					lbfoto.getHeight(), Image.SCALE_DEFAULT));
+			lbfoto.setIcon(icono);
+			lbfoto.repaint();
+			//lbfoto.setIcon(new ImageIcon(new URL("http://192.168.1.45/ERP/FotosE/.jpg")));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void desactivar(){
 		tfdni.setEditable(false);
@@ -199,5 +218,25 @@ public class JPFormularioClientes extends JPanel {
 		tfcompras.setEditable(true);
 		tfcuenta.setEditable(true);
 	}
+	/**
+	 * 
+	 */
+	
+	public String insertGionesInCuenta(String cuentaSin){
+		String cuentaCon="";							 //    4   8   12  16  20
+														 //012345678911234567892123
+		StringBuffer str1 = new StringBuffer (cuentaSin);//000011112222333344445555
+		String aux = "-";
+		str1.insert (4, aux);
+		str1.insert(9, aux);
+		str1.insert(14, aux);
+		str1.insert(19, aux);
+		str1.insert(24, aux);
+		
+		cuentaCon=str1.toString();
+		
+		return cuentaCon;
+	}
+	
 
 }

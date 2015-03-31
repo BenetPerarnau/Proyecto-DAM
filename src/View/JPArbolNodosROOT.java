@@ -24,6 +24,7 @@ public class JPArbolNodosROOT extends JPanel {
 	private final String[] pro={"Crear Producto","Consultar Producto","Modificar Producto","Borrar Producto"};
 	private final String[] vent={"Crear Venta","Consultar Venta","Modificar Venta","Borrar Venta"};
 	private final String[] comp={"Crear Compra","Consultar Compra","Modificar Compra","Borrar Compra"};
+	private final String[] fac={"Crear Factura","Consultar Factura","Modificar Factura","Borrar Factura"};
 	
 	private JTree tree;
 	
@@ -44,6 +45,7 @@ public class JPArbolNodosROOT extends JPanel {
 		DefaultMutableTreeNode nodopro=new DefaultMutableTreeNode("Productos");
 		DefaultMutableTreeNode nodoVenta=new DefaultMutableTreeNode("Ventas");
 		DefaultMutableTreeNode nodoCompra=new DefaultMutableTreeNode("Compras");
+		DefaultMutableTreeNode nodoFactura=new DefaultMutableTreeNode("Facturas");
 		
 		for(String a: cl){
 			DefaultMutableTreeNode aux=new DefaultMutableTreeNode();
@@ -76,6 +78,11 @@ public class JPArbolNodosROOT extends JPanel {
 			aux.setUserObject(a);
 			nodoCompra.add(aux);
 		}
+		for(String a:fac){
+			DefaultMutableTreeNode aux=new DefaultMutableTreeNode();
+			aux.setUserObject(a);
+			nodoFactura.add(aux);
+		}
 			
 		raiz.add(nodocl);
 		raiz.add(nodopr);
@@ -83,6 +90,7 @@ public class JPArbolNodosROOT extends JPanel {
 		raiz.add(nodopro);
 		raiz.add(nodoVenta);
 		raiz.add(nodoCompra);
+		raiz.add(nodoFactura);
 		
 		DefaultTreeModel modelo=new DefaultTreeModel(raiz);
 		

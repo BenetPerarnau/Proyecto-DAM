@@ -15,9 +15,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import View.Formularios.JPFormularioClientes;
+import View.Formularios.JPFormularioCompra;
 import View.Formularios.JPFormularioEmpleados;
+import View.Formularios.JPFormularioFactura;
 import View.Formularios.JPFormularioProductos;
 import View.Formularios.JPFormularioProveedores;
+import View.Formularios.JPFormularioVenta;
 import Constants.Constant;
 import Controler.ControladorALMAC;
 import Controler.ControladorCOMPRA;
@@ -44,6 +47,9 @@ public class Principal extends JFrame{
 	private JPFormularioClientes formclientes;
 	private JPFormularioEmpleados formempleados;
 	private JPFormularioProductos formProductos;
+	private JPFormularioVenta formVentas;
+	private JPFormularioCompra formCompras;
+	private JPFormularioFactura formFacturas;
 	private JPPie pie;
 	
 	public Principal(){
@@ -75,35 +81,61 @@ public class Principal extends JFrame{
 	public JPFormularioClientes getFormc() {return formclientes;}
 	public JPFormularioEmpleados getForme() {return formempleados;}
 	public JPFormularioProductos getFormProductos(){return formProductos;}
+	public JPFormularioVenta getFormVentas(){return formVentas;}
+	public JPFormularioCompra getFormCompras(){return formCompras;}
+	public JPFormularioFactura getFormFacturas(){return formFacturas;}
 	public JPPie getPie() {return pie;}
 
 	public void setVerTabla(JPVertabla verTabla) {
+		if(this.verTabla.isShowing()){this.remove(verTabla);}
 		this.verTabla = verTabla;
 		this.add(this.verTabla,BorderLayout.CENTER);//
 		this.paintAll(getGraphics());
 	}
 	
 	public void setForme(JPFormularioEmpleados forme) {
+		cleanWindow();
 		this.formempleados = forme;
 		this.add(this.formempleados,BorderLayout.CENTER);//
 		this.paintAll(getGraphics());
 	}
 	
 	public void setFormp(JPFormularioProveedores formp) {
+		cleanWindow();
 		this.formproveedores = formp;
 		this.add(this.formproveedores,BorderLayout.CENTER);//
 		this.paintAll(getGraphics());
 	}
 
 	public void setFormc(JPFormularioClientes formc) {
+		cleanWindow();
 		this.formclientes = formc;
 		this.add(this.formclientes,BorderLayout.CENTER);//
 		this.paintAll(getGraphics());
 	}
 	
 	public void setFormProductos(JPFormularioProductos formProductos){
+		cleanWindow();
 		this.formProductos=formProductos;
 		this.add(this.formProductos,BorderLayout.CENTER);//
+		this.paintAll(getGraphics());
+	}
+	public void setFormVentas(JPFormularioVenta formVenta){
+		cleanWindow();
+		this.formVentas=formVenta;
+		this.add(this.formVentas,BorderLayout.CENTER);//
+		this.paintAll(getGraphics());
+	}
+	public void setFormCompras(JPFormularioCompra formCompra){
+		cleanWindow();
+		this.formCompras=formCompra;
+		this.add(this.formCompras,BorderLayout.CENTER);//
+		this.paintAll(getGraphics());
+	}
+	public void setFormFacturas(JPFormularioFactura formCompra){
+		cleanWindow();
+		this.formFacturas=formCompra;
+		this.add(this.formFacturas,BorderLayout.CENTER);//
 		this.paintAll(getGraphics());
 	}
 
@@ -152,8 +184,7 @@ public class Principal extends JFrame{
 		
 		this.setJMenuBar(menuBar);
 		
-		log=new JPLogin();
-		//log.setAlignmentX(LEFT_ALIGNMENT);	
+		log=new JPLogin();	
 		this.add(log, BorderLayout.PAGE_START);
 		
 		//
@@ -169,6 +200,15 @@ public class Principal extends JFrame{
 		formProductos=new JPFormularioProductos();
 		formProductos.setVisible(false);
 		this.add(formProductos, BorderLayout.CENTER);
+		formVentas=new JPFormularioVenta();
+		formVentas.setVisible(false);
+		this.add(formVentas, BorderLayout.CENTER);
+		formCompras=new JPFormularioCompra();
+		formCompras.setVisible(false);
+		this.add(formCompras, BorderLayout.CENTER);
+		formFacturas=new JPFormularioFactura();
+		formFacturas.setVisible(false);
+		this.add(formFacturas, BorderLayout.CENTER);
 		//
 		
 		verTabla=new JPVertabla();
@@ -178,7 +218,6 @@ public class Principal extends JFrame{
 		cargando.setVisible(false);
 		this.add(cargando,BorderLayout.CENTER);
 		
-		//this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		bienvenidaVenta=new JPArbolNodosVENTA();
 		bienvenidaVenta.setVisible(false);
@@ -200,6 +239,17 @@ public class Principal extends JFrame{
 		this.add(pie, BorderLayout.PAGE_END);
 		
 	}
+	
+	public void cleanWindow(){
+		if(formproveedores.isShowing()){this.remove(formproveedores);}
+		if(formclientes.isShowing()){this.remove(formclientes);}
+		if(formempleados.isShowing()){this.remove(formempleados);}
+		if(formProductos.isShowing()){this.remove(formProductos);}
+		if(formVentas.isShowing()){this.remove(formVentas);}
+		if(formCompras.isShowing()){this.remove(formCompras);}
+		if(formFacturas.isShowing()){this.remove(formFacturas);}
+	}
+	
 	public void addlisteners(ControladorROOT control){
 		item1desp1.addActionListener(control);
 	}

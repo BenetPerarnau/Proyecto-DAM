@@ -20,9 +20,12 @@ import javax.swing.event.TableModelListener;
 import javax.swing.JButton;
 
 import View.Formularios.JPFormularioClientes;
+import View.Formularios.JPFormularioCompra;
 import View.Formularios.JPFormularioEmpleados;
+import View.Formularios.JPFormularioFactura;
 import View.Formularios.JPFormularioProductos;
 import View.Formularios.JPFormularioProveedores;
+import View.Formularios.JPFormularioVenta;
 import Controler.ControladorALMAC;
 import Controler.ControladorCOMPRA;
 import Controler.ControladorCONTA;
@@ -36,6 +39,9 @@ public class JPVertabla extends JPanel {
 	private JPFormularioEmpleados formEmpleados;
 	private JPFormularioProveedores formProveedores;
 	private JPFormularioProductos formProductos;
+	private JPFormularioVenta formVentas;
+	private JPFormularioCompra formCompras;
+	private JPFormularioFactura formFacturas;
 	
 	public JPVertabla() {
 
@@ -45,6 +51,8 @@ public class JPVertabla extends JPanel {
 	       
 			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			table = new JTable(datos, cabecera);
+			
+			
 			
 	        //table.setPreferredScrollableViewportSize(new Dimension(1100, 50));
 
@@ -60,17 +68,26 @@ public class JPVertabla extends JPanel {
 	        formEmpleados=new JPFormularioEmpleados();
 	        formProveedores=new JPFormularioProveedores();
 	        formProductos=new JPFormularioProductos();
+	        formVentas=new JPFormularioVenta();
+	        formCompras=new JPFormularioCompra();
+	        formFacturas=new JPFormularioFactura();
 	        
 	        formClientes.setVisible(false);
 	        formEmpleados.setVisible(false);
 	        formProveedores.setVisible(false);
 	        formProductos.setVisible(false);
+	        formVentas.setVisible(false);
+	        formCompras.setVisible(false);
+	        formFacturas.setVisible(false);
 	        
 	        add(scrollPane); 
 	        add(formClientes);
 	        add(formEmpleados);
 	        add(formProveedores);
 	        add(formProductos);
+	        add(formVentas);
+	        add(formCompras);
+	        add(formFacturas);
 	        
 	}
 
@@ -113,32 +130,47 @@ public class JPVertabla extends JPanel {
 		this.table = table;
 	}
 	public JPFormularioClientes getFormC(){
-		if(formEmpleados!=null)this.formEmpleados.setVisible(false);
-		if(formProveedores!=null)this.formProveedores.setVisible(false);
-		if(formProductos!=null)this.formProductos.setVisible(false);
+		clean();
 		if(formClientes!=null)this.formClientes.setVisible(true);
 		return formClientes;
 	}
 	public JPFormularioEmpleados getFormE(){
-		if(formClientes!=null)this.formClientes.setVisible(false);
-		if(formProveedores!=null)this.formProveedores.setVisible(false);
-		if(formProductos!=null)this.formProductos.setVisible(false);
+		clean();
 		if(formEmpleados!=null)this.formEmpleados.setVisible(true);
 		return formEmpleados;
 	}
 	public JPFormularioProveedores getFormP(){
-		if(formClientes!=null)this.formClientes.setVisible(false);
-		if(formEmpleados!=null)this.formEmpleados.setVisible(false);
-		if(formProductos!=null)this.formProductos.setVisible(false);
+		clean();
 		if(formProveedores!=null)this.formProveedores.setVisible(true);
 		return formProveedores;
 	}
 	public JPFormularioProductos getFormProductos(){
-		if(formClientes!=null)this.formClientes.setVisible(false);
-		if(formEmpleados!=null)this.formEmpleados.setVisible(false);
-		if(formProveedores!=null)this.formProveedores.setVisible(false);
+		clean();
 		if(formProductos!=null)this.formProductos.setVisible(true);
 		return formProductos;
 	}
-	
+	public JPFormularioVenta getFormVentas(){
+		clean();
+		if(formVentas!=null)this.formVentas.setVisible(true);
+		return formVentas;
+	}
+	public JPFormularioCompra getFormCompras(){
+		clean();
+		if(formCompras!=null)this.formCompras.setVisible(true);
+		return formCompras;
+	}
+	public JPFormularioFactura getFormFacturas(){
+		clean();
+		if(formFacturas!=null)this.formFacturas.setVisible(true);
+		return formFacturas;
+	}
+	public void clean(){
+		if(formEmpleados!=null)this.formEmpleados.setVisible(false);
+		if(formProveedores!=null)this.formProveedores.setVisible(false);
+		if(formProductos!=null)this.formProductos.setVisible(false);
+		if(formVentas!=null)this.formVentas.setVisible(false);
+		if(formCompras!=null)this.formCompras.setVisible(false);
+		if(formFacturas!=null)this.formFacturas.setVisible(false);
+		if(formClientes!=null)this.formClientes.setVisible(false);
+	}
 }

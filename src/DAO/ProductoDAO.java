@@ -22,8 +22,13 @@ public class ProductoDAO implements InterfaceDAO<Producto>{
 										+ "SET NOMBRE = ?, DESCRIPCCION = ?, PRECIOV = ?, "
 										+ "STOCK = ?, PROVEEDOR = ? "
 										+ "WHERE COD = ?";
+	private static final String SQL_UPDATESTOCK="UPDATE PRODUCTO "
+										+ "SET STOCK = ? "
+										+ "WHERE COD = ?";
 	private static final String SQL_READ="SELECT * FROM PRODUCTO WHERE COD = ?";
 	private static final String SQL_READALL="SELECT * FROM PRODUCTO";
+	
+	private static final String SQL_READ_PROV="SELECT * FROM PRODUCTO WHERE PROVEEDOR = ?";
 
 	private static ConectorBBDD cnn;//aplicamos Singleton
 
@@ -86,6 +91,28 @@ public class ProductoDAO implements InterfaceDAO<Producto>{
 		}
 		return false;
 	}
+	
+	public boolean updateStock(String cod, int stock)throws SQLException {
+		//
+		Producto aux=read(cod);
+		int stockActual=aux.getStock();
+		//
+		int stockfinal=stockActual+stock;
+		PreparedStatement ps;
+		cnn=ConectorBBDD.saberEstado();
+		try{
+		ps=cnn.getConexion().prepareStatement(SQL_UPDATESTOCK);
+		ps.setInt(1, stockfinal);
+		ps.setString(2, cod);
+		
+		if(ps.executeUpdate()>0){
+			return true;
+		}
+		}finally{
+			cnn.cerrarConexion();
+		}
+		return false;
+	}
 
 	@Override
 	public Producto read(Object key) throws SQLException {
@@ -99,8 +126,8 @@ public class ProductoDAO implements InterfaceDAO<Producto>{
 		res=ps.executeQuery();
 		while(res.next()){
 			p=new Producto(
-							res.getString(1),res.getString(2),res.getString(3),
-							res.getFloat(4),res.getInt(5),res.getString(6)
+							res.getString(2),res.getString(3),res.getString(4),
+							res.getFloat(5),res.getInt(6),res.getString(7)
 							);
 		}
 		} catch (ExceptionNombre e) {
@@ -117,6 +144,7 @@ public class ProductoDAO implements InterfaceDAO<Producto>{
 		}
 		return p;
 	}
+	
 
 	@Override
 	public ArrayList<Producto> readAll() throws SQLException {
@@ -128,11 +156,12 @@ public class ProductoDAO implements InterfaceDAO<Producto>{
 		try{
 		array=new ArrayList<Producto>();
 		ps=cnn.getConexion().prepareStatement(SQL_READALL);
+		
 		res=ps.executeQuery();
 		while(res.next()){
 			p=new Producto(
-					res.getString(1),res.getString(2),res.getString(3),
-					res.getFloat(4),res.getInt(5),res.getString(6)
+					res.getString(2),res.getString(3),res.getString(4),
+					res.getFloat(5),res.getInt(6),res.getString(7)
 						);
 			array.add(p);
 		}
@@ -150,6 +179,40 @@ public class ProductoDAO implements InterfaceDAO<Producto>{
 		}
 		return array;
 	}
+	
+	public ArrayList<Producto> readAllProv(String name_prov) throws SQLException {
+		PreparedStatement ps;
+		ResultSet res;
+		Producto p;
+		ArrayList<Producto> array=null;
+		cnn=ConectorBBDD.saberEstado();
+		try{
+		array=new ArrayList<Producto>();
+		ps=cnn.getConexion().prepareStatement(SQL_READ_PROV);
+		ps.setString(1, name_prov);
+		res=ps.executeQuery();
+		while(res.next()){
+			p=new Producto(
+					res.getString(2),res.getString(3),res.getString(4),
+					res.getFloat(5),res.getInt(6),res.getString(7)
+						);
+			array.add(p);
+		}
+		} catch (ExceptionNombre e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionStock e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionPrecio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			cnn.cerrarConexion();
+		}
+		return array;
+	}
+	
 	public String[] consultaTitulosTablaToArray(){
 		PreparedStatement ps;
 		String[] aux=null;
@@ -161,7 +224,7 @@ public class ProductoDAO implements InterfaceDAO<Producto>{
 			aux=new String[numcl];
 			while(resultado.next()){
 				for(int i=0; i<numcl; i++){
-					aux[i]=resultado.getMetaData().getColumnName(i+1);
+					aux[i]=resultado.getMetaData().getColumnName(i+1).toUpperCase();
 				}			
 			}
 			
